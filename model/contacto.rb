@@ -9,21 +9,17 @@ end
 class Contacto
 
 	def initialize(un_nombre, un_apellido, un_mail)
-		validar_argumentos(un_nombre, un_apellido, un_mail)
+		validar_argumentos(un_nombre, "debe tener un nombre.")
+		validar_argumentos(un_apellido, "debe tener un apellido.")
+		validar_argumentos(un_mail, "debe tener un mail.")
 		@nombre = un_nombre
 		@apellido = un_apellido
 		@mail = un_mail
   	end
 
-  	def validar_argumentos(un_nombre, un_apellido, un_mail)
-		if un_nombre == nil or un_nombre.size == 0  
-	    	raise ExcepcionContacto.new("El contacto"), "debe tener un nombre."
-	    end
-	    if un_apellido == nil or un_apellido.size == 0  
-	    	raise ExcepcionContacto.new("El contacto"), "debe tener un apellido."
-	    end
-	    if un_mail == nil or un_mail.size == 0  
-	    	raise ExcepcionContacto.new("El contacto"), "debe tener un mail."
+  	def validar_argumentos(un_argumento, un_mensaje)
+		if un_argumento == nil or un_argumento.size == 0  
+	    	raise ExcepcionContacto.new("El contacto"), un_mensaje
 	    end
   	end
 
