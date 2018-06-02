@@ -3,6 +3,7 @@ require 'mailfactory'
 require 'mail'
 
 class EnviadorDeMail
+	attr_reader :MAIL_ORIGEN
 
 	def initialize()
 		@opciones = { :address              => "smtp.gmail.com",
@@ -13,6 +14,7 @@ class EnviadorDeMail
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
+	    @MAIL_ORIGEN = "fiesta@untref.com"
   	end
 
   	def configurar_mail()
@@ -45,7 +47,7 @@ class EnviadorDeMail
 		enviado = nil
   		begin
 			Mail.deliver do
-			       to 'matytaa@gmail.com'
+			       to @MAIL_ORIGEN
 			     from @mail_destino
 			  subject @asunto
 			     body @cuerpo_de_mail
