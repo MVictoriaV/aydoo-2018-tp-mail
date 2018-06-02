@@ -8,13 +8,15 @@ class EnviadorDeMail
 	def initialize()
 		@opciones = { :address              => "smtp.gmail.com",
 	            :port                 => 587,
+	            :user_name => "mygmailusername@gmail.com",
+    			:password => "myGmailPassword",
 	            :authentication       => 'plain',
 	            :enable_starttls_auto => true  }
 
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
-	    @MAIL_ORIGEN = "fiesta@untref.com"
+	    @MAIL_ORIGEN = "universidad@untref.com"
   	end
 
   	def configurar_mail()

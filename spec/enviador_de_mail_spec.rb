@@ -12,7 +12,7 @@ class EnviadorDeMailSpec
         	expect(mi_enviador_de_mail.configurar_mail()).to be true
         end
         
-		skip 'no deberia poder enviar un mail ya que falta mail de servidor' do
+		it 'no deberia poder enviar un mail ya que falta mail de servidor' do
             	mi_enviador_de_mail.configurar_mail()
             	expect(mi_enviador_de_mail.enviar_mail()).to be false
         end
