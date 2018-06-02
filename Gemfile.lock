@@ -53,6 +53,8 @@ GEM
     rack (1.6.10)
     rack-protection (1.5.5)
       rack
+    rack-test (0.7.0)
+      rack (>= 1.0, < 3)
     rake (10.4.2)
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
@@ -92,6 +94,7 @@ DEPENDENCIES
   mail
   mailcatcher
   mailfactory
+  rack-test
   rake
   rb-readline
   rspec
