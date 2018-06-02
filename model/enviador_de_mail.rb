@@ -12,6 +12,7 @@ class EnviadorDeMail
 
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
+	    @asunto = nil
   	end
 
   	def configurar_mail()
@@ -36,13 +37,17 @@ class EnviadorDeMail
 		@mail_destino = un_mail
 	end
 
+	def inyectar_asunto(un_asunto)
+		@asunto = un_asunto
+	end
+
 	def enviar_mail()
 		enviado = nil
   		begin
 			Mail.deliver do
 			       to 'matytaa@gmail.com'
 			     from @mail_destino
-			  subject 'un_asunto'
+			  subject @asunto
 			     body @cuerpo_de_mail
 			end
 			enviado = true
