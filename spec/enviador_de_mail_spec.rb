@@ -2,7 +2,7 @@ require 'rspec'
 require 'net/smtp'
 require 'mailfactory'
 require 'mail'
-require_relative '../model/EnviadorDeMail'
+require_relative '../model/enviador_de_mail'
 
 class EnviadorDeMailSpec
 
