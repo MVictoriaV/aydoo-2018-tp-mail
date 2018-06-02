@@ -2,18 +2,21 @@ require_relative '../app'
 require 'rspec'
 require 'rack/test'
 
-describe 'Aplicacion Sinatra' do
-  include Rack::Test::Methods
+class AppSpec
 
-  def app
-    Sinatra::Application
-  end
+  describe 'Aplicacion Sinatra' do
+    include Rack::Test::Methods
 
-  describe '/procesadorDeMail/un_nombre' do
-    it 'deberia mostrar por pantalla el mensaje => Hola Juan <=.' do
-      get '/procesadorDeMail/Juan'
+    def app
+      Sinatra::Application
+    end
 
-      expect(last_response).to be_ok
+    describe '/procesadorDeMail/un_nombre' do
+      it 'deberia mostrar por pantalla el mensaje => Hola Juan <=.' do
+        get '/procesadorDeMail/Juan'
+
+        expect(last_response).to be_ok
+      end
     end
   end
 end
