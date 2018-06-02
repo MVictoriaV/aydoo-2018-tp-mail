@@ -13,13 +13,18 @@ class EnviadorDeMailSpec
         end
         
 		it 'no deberia poder enviar un mail ya que falta mail de servidor' do
-        	mi_enviador_de_mail.configurar_mail()
-        	expect(mi_enviador_de_mail.enviar_mail()).to be false
+            	mi_enviador_de_mail.configurar_mail()
+            	expect(mi_enviador_de_mail.enviar_mail()).to be false
         end
 
         it 'deberia poder asiganar el cuerpo de un mail' do
         	un_cuerpo = mi_enviador_de_mail.inyectar_cuerpo_del_mail("cuerpo del mail")
         	expect(un_cuerpo).to include("cuerpo del mail")
+        end
+        
+        it 'deberia poder asiganar el mail destino' do
+            un_mail = mi_enviador_de_mail.inyectar_mail_detino("un_mail@test.com")
+            expect(un_mail).to include("un_mail@test.com")
         end
     end
 end

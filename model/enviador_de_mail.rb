@@ -11,6 +11,7 @@ class EnviadorDeMail
 	            :enable_starttls_auto => true  }
 
 	    @cuerpo_de_mail = nil
+	    @mail_destino = nil
   	end
 
   	def configurar_mail()
@@ -31,12 +32,16 @@ class EnviadorDeMail
 		@cuerpo_de_mail = un_cuerpo
 	end
 
+	def inyectar_mail_detino(un_mail)
+		@mail_destino = un_mail
+	end
+
 	def enviar_mail()
 		enviado = nil
   		begin
 			Mail.deliver do
 			       to 'matytaa@gmail.com'
-			     from 'matytaa@gmail.com'
+			     from @mail_destino
 			  subject 'un_asunto'
 			     body @cuerpo_de_mail
 			end
