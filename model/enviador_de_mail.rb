@@ -3,15 +3,20 @@ require 'mailfactory'
 require 'mail'
 
 class EnviadorDeMail
+	attr_reader :MAIL_ORIGEN
 
 	def initialize()
 		@opciones = { :address              => "smtp.gmail.com",
 	            :port                 => 587,
+	            :user_name => "mygmailusername@gmail.com",
+    			:password => "myGmailPassword",
 	            :authentication       => 'plain',
 	            :enable_starttls_auto => true  }
 
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
+	    @asunto = nil
+	    @MAIL_ORIGEN = "universidad@untref.com"
   	end
 
   	def configurar_mail()
@@ -36,13 +41,17 @@ class EnviadorDeMail
 		@mail_destino = un_mail
 	end
 
+	def inyectar_asunto(un_asunto)
+		@asunto = un_asunto
+	end
+
 	def enviar_mail()
 		enviado = nil
   		begin
 			Mail.deliver do
-			       to 'matytaa@gmail.com'
+			       to @MAIL_ORIGEN
 			     from @mail_destino
-			  subject 'un_asunto'
+			  subject @asunto
 			     body @cuerpo_de_mail
 			end
 			enviado = true

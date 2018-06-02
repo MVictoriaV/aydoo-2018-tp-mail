@@ -26,5 +26,10 @@ class EnviadorDeMailSpec
             un_mail = mi_enviador_de_mail.inyectar_mail_detino("un_mail@test.com")
             expect(un_mail).to include("un_mail@test.com")
         end
+
+        it 'deberia poder asiganar el asunto del mail' do
+            un_asunto = mi_enviador_de_mail.inyectar_asunto("invitacion")
+            expect(un_asunto).to include("invitacion")
+        end
     end
 end
