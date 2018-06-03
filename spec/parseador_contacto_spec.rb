@@ -12,5 +12,10 @@ class ParseadorContactoSpec
             una_linea = un_nombre + ","+ un_apellido +"," + un_mail
         	expect(mi_parseador.parsear(una_linea)).to include(un_nombre)
         end
+
+        it 'asdasd' do
+            un_archivo = "/home/inspiron/Facultad/aydoo-2018-tp-mail/lista_de_contactos.txt"
+            expect(mi_parseador.levantar_lista_de_contactos(un_archivo)).to eq 5
+        end
     end
 end
