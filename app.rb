@@ -13,8 +13,7 @@ get '/procesadorDeMail/:nombre' do
 end
 
 post '/' do
-  request_payload = JSON.parse request.body.read
   parseador_json = ParseadorJson.new
-  parseador_json.parsear?(request_payload)
+  parseador_json.parsear(request.body.read)
   status 200
 end 
