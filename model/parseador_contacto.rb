@@ -5,11 +5,11 @@ class ParseadorContacto
 
 	def initialize()
     @contactos = Array.new
-    @atributos_contacto = Array.new
   end
 
   def parsear(un_hash_de_contactos)
     genera_contactos(un_hash_de_contactos)
+    return @contactos
   end
 
 

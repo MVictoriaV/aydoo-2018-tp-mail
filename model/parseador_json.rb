@@ -1,5 +1,6 @@
 require 'json'
 require_relative 'parseador_dato'
+require_relative 'parseador_contacto'
 
 class ExcepcionParseador < StandardError
 
@@ -42,8 +43,8 @@ class ParseadorJson
 
 	def parsea_contacto(un_json)
 		unless (un_json["contactos"].nil?)
-			@parser_contacto = ParseadorContacto.new
 			contactos = un_json["contactos"]
+			@parser_contacto = ParseadorContacto.new
 			hash_contactos = JSON.parse(contactos.to_json)
 			@parser_contacto.parsear(hash_contactos)
 		end

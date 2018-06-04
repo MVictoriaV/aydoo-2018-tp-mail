@@ -15,7 +15,7 @@ class ParseadorContactoSpec
 
         it 'deberia importar todos los contactos de la lista' do
             contactos = levantar_archivo_json(un_archivo, "contactos")
-            expect(mi_parseador.parsear(contactos)).to eq 5
+            expect(mi_parseador.parsear(contactos).size).to eq 5
         end
 
         it 'deberia poder generar un contacto' do
