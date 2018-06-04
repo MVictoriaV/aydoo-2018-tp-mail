@@ -14,6 +14,7 @@ class EnviadorDeMail
 		Mail.defaults do
 		  	delivery_method :smtp, address: "localhost", port: 1025
 		end
+		return true
 	end
 
 	def inyectar_cuerpo_del_mail(un_cuerpo)
@@ -40,5 +41,6 @@ class EnviadorDeMail
 		  subject un_asunto
 		     body cuerpo
 		end
+		return true
 	end
 end
