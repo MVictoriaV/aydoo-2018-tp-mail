@@ -20,6 +20,10 @@
 		{
 			"nombre": "daniel",
 			"apellido": "ricciardo",
+			"mail": "daniel.ricciardo@unmail.com"},
+		{
+			"nombre": "",
+			"apellido": "ricciardo",
 			"mail": "daniel.ricciardo@unmail.com"}
 		],
     "datos":{

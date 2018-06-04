@@ -15,23 +15,23 @@ class Contacto
 		@nombre = un_nombre
 		@apellido = un_apellido
 		@mail = un_mail
-  	end
+  end
 
-  	def validar_argumentos(un_argumento, un_mensaje)
+  def validar_argumentos(un_argumento, un_mensaje)
 		if un_argumento == nil or un_argumento.size == 0  
-	    	raise ExcepcionContacto.new("El contacto"), un_mensaje
-	    end
-  	end
+	  	raise ExcepcionContacto.new("El contacto"), un_mensaje
+	  end
+  end
 
-  	def get_nombre()
-  		return @nombre
-  	end
+  def get_nombre()
+   	return @nombre
+  end
 
-  	def get_apellido()
-  		return @apellido
-  	end
+  def get_apellido()
+  	return @apellido
+  end
 
-  	def get_mail()
-  		return @mail
-  	end
+  def get_mail()
+  	return @mail
+  end
 end
