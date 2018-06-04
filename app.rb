@@ -13,6 +13,13 @@ get '/procesadorDeMail/:nombre' do
   status 200
 end
 
+post '/envio_mail_test' do
+  parseador_json = ParseadorJson.new
+  parseador_json.parsear(request.body.read)
+  datos_del_mail = parseador_json.get_dato
+  status 200
+end
+
 post '/' do
   parseador_json = ParseadorJson.new
   parseador_json.parsear(request.body.read)
@@ -20,6 +27,7 @@ post '/' do
   envia_mail("mensaje")
   status 200
 end
+
 
 def envia_mail(cuerpo)
   enviador = EnviadorDeMail.new

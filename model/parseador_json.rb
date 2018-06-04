@@ -30,6 +30,6 @@ class ParseadorJson
 	end
 
 	def get_dato
-		return -1
+		return @dato.dato_evento
 	end
 end
