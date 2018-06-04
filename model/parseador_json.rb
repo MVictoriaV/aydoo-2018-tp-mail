@@ -24,10 +24,11 @@ class ParseadorJson
 		un_json = JSON.parse(un_json)
 
 		parsea_dato(un_json)
-  		
-  		unless (un_json["template"].nil?)
+		parsea_contacto(un_json)
+		unless (un_json["template"].nil?)
   			@cuerpo_del_mail = un_json["template"]
-  		end  		
+  		end		
+  		
   		return true
 	end
 
@@ -36,7 +37,6 @@ class ParseadorJson
   			@dato = ParseadorDato.new
   			datos = un_json["datos"]
   			@dato.parsear(datos)
-  			parsea_contacto(un_json)
   		end
 	end
 
@@ -44,9 +44,11 @@ class ParseadorJson
 		unless (un_json["contactos"].nil?)
 			@parser_contacto = ParseadorContacto.new
 			contactos = un_json["contactos"]
-			@parser_contacto.parsear(contactos)
+			hash_contactos = JSON.parse(contactos.to_json)
+			@parser_contacto.parsear(hash_contactos)
 		end
 	end
+
 	def get_dato
 		return @dato.dato_evento
 	end

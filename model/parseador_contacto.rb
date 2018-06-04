@@ -8,8 +8,8 @@ class ParseadorContacto
     @atributos_contacto = Array.new
   end
 
-  def parsear(un_json)
-    genera_contactos(un_json)
+  def parsear(un_hash_de_contactos)
+    genera_contactos(un_hash_de_contactos)
   end
 
 
