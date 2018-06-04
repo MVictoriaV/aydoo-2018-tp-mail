@@ -10,10 +10,12 @@ class ParseadorContactoSpec
         un_archivo = "json_contactos_datos.txt"
         def levantar_archivo_json(un_archivo, un_id)
             mi_hash = YAML.load_file(un_archivo)
+            return JSON.parse(mi_hash[un_id].to_json)
         end
 
         it 'deberia importar todos los contactos de la lista' do
-            expect(mi_parseador.parsear(levantar_archivo_json(un_archivo, "contactos"), "contactos")).to eq 5
+            contactos = levantar_archivo_json(un_archivo, "contactos")
+            expect(mi_parseador.parsear(contactos)).to eq 5
         end
 
         it 'deberia poder generar un contacto' do
@@ -24,7 +26,8 @@ class ParseadorContactoSpec
 
         it 'deberia tener un array de 5 contactos' do
             un_parseador = ParseadorContacto.new()
-            un_parseador.parsear(levantar_archivo_json(un_archivo, "contactos"), "contactos")
+            contactos = levantar_archivo_json(un_archivo, "contactos")
+            un_parseador.parsear(contactos)
             expect(un_parseador.get_contactos().size).to eq 5
         end
     end
