@@ -5,6 +5,7 @@ class ParseadorContacto
 
 	def initialize()
     @contactos = Array.new
+    @atributos_contacto = Array.new
   end
 
   def parsear(un_json, un_id)
@@ -22,30 +23,25 @@ class ParseadorContacto
       apellido = nil
       mail = nil
       if valor.is_a?(::Hash)
-        valor.each do |otra_clave, otro_valor|
-          if otra_clave == "nombre"
-            nombre = otro_valor.to_s
-          elsif otra_clave == "apellido"
-            apellido = otro_valor.to_s
-          else
-            mail = otro_valor.to_s
-          end
-        end
+          retiene_valores (valor)
       else
-        otro_hash.each do |otra_clave, otro_valor|
-          if otra_clave == "nombre"
-            nombre = otro_valor.to_s
-          elsif otra_clave == "apellido"
-            apellido = otro_valor.to_s
-          else
-            mail = otro_valor.to_s
-          end
+        otro_hash.each do ||
+          retiene_valores (otro_hash)
         end
       end
+      nombre = @atributos_contacto[0]
+      apellido = @atributos_contacto[1]
+      mail = @atributos_contacto[2]
       crear_contacto(nombre,apellido,mail)
       contactos_importados = contactos_importados + 1
     end
     return contactos_importados
+  end
+
+  def retiene_valores (un_hash)
+    @atributos_contacto.push(un_hash["nombre"])
+    @atributos_contacto.push(un_hash["apellido"])
+    @atributos_contacto.push(un_hash["mail"])
   end
 
   def crear_contacto(un_nombre,un_apellido,un_mail)
