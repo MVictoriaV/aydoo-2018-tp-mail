@@ -22,9 +22,11 @@ class ParseadorJsonSpec
           expect{ parseador_json.parsear(nil) }.to raise_exception(ExcepcionParseador)
         end
 
-        it 'asd' do
+        it 'deberia obtener un array de 5 contactos' do
             un_json = levantar_archivo_json()
             parseador_json.parsear(un_json)
+            puts contactos = parseador_json.get_contactos
+            expect(contactos.size).to eq 5
         end
     end
 end

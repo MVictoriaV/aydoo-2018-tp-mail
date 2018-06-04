@@ -44,10 +44,14 @@ class ParseadorJson
 	def parsea_contacto(un_json)
 		unless (un_json["contactos"].nil?)
 			contactos = un_json["contactos"]
-			@parser_contacto = ParseadorContacto.new
+			un_parser = ParseadorContacto.new
 			hash_contactos = JSON.parse(contactos.to_json)
-			@parser_contacto.parsear(hash_contactos)
+			@parser_contacto = un_parser.parsear(hash_contactos)
 		end
+	end
+
+	def get_contactos
+		return @parser_contacto
 	end
 
 	def get_dato
