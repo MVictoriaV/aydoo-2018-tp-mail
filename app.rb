@@ -14,8 +14,8 @@ get '/procesadorDeMail/:nombre' do
 end
 
 post '/' do
-  #parseador_json = ParseadorJson.new
-  #parseador_json.parsear(request.body.read)
+  parseador_json = ParseadorJson.new
+  parseador_json.parsear(request.body.read)
   envia_mail("mensaje")
   status 200
 end

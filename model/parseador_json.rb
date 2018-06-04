@@ -1,4 +1,5 @@
 require 'json'
+require_relative 'parseador_dato'
 
 class ExcepcionParseador < StandardError
 
@@ -14,6 +15,14 @@ class ParseadorJson
 			raise ExcepcionParseador.new("El parametro ingresado no puede ser nil o estar vacio.")
   			return false
   		end
+  		unless (un_json["datos"].nil?)
+  			
+  			@dato = ParseadorDato.new
+  			datos = JSON.parse(un_json["datos"].to_json)
+  			puts datos
+  			@dato.parsear(datos)
+  		end
   		return true
 	end
+
 end
