@@ -26,7 +26,7 @@ class AppSpec
 
     describe '/envio_mail_test' do
       it 'deberia llegar el json y retornar estado ok' do
-        post '/', parametro_json, "CONTENT_TYPE" => "application/json"
+        post '/envio_mail_test', parametro_json, "CONTENT_TYPE" => "application/json"
          expect(last_response).to be_ok
       end
     end

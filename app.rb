@@ -24,16 +24,16 @@ post '/' do
   parseador_json = ParseadorJson.new
   parseador_json.parsear(request.body.read)
   datos_del_mail = parseador_json.get_dato
-  envia_mail("mensaje")
+  envia_mail(datos_del_mail)
   status 200
 end
 
 
-def envia_mail(cuerpo)
+def envia_mail(datos_del_mail)
   enviador = EnviadorDeMail.new
   enviador.configurar_mail()
-  enviador.inyectar_cuerpo_del_mail(cuerpo)
+  enviador.inyectar_cuerpo_del_mail("cuerpo")
   enviador.inyectar_mail_detino("destino@ejemplo.com")
-  enviador.inyectar_asunto("un asuynto")
+  enviador.inyectar_asunto(datos_del_mail.asunto)
   enviador.enviar_mail()
 end
