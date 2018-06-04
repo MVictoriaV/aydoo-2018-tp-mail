@@ -1,18 +1,9 @@
-require 'net/smtp'
-require 'mailfactory'
 require 'mail'
 
 class EnviadorDeMail
 	attr_reader :MAIL_ORIGEN
 
 	def initialize()
-		@opciones = { :address              => "smtp.gmail.com",
-	            :port                 => 587,
-	            :user_name => "mygmailusername@gmail.com",
-    			:password => "myGmailPassword",
-	            :authentication       => 'plain',
-	            :enable_starttls_auto => true  }
-
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
@@ -20,17 +11,9 @@ class EnviadorDeMail
   	end
 
   	def configurar_mail()
-  		unas_opciones = @opciones
-  		estado_configuracion = nil
-  		begin
-			Mail.defaults do
-			  	delivery_method :smtp, unas_opciones
-			end
-			estado_configuracion = true
-		rescue Exception
-			estado_configuracion = false
+		Mail.defaults do
+		  	delivery_method :smtp, address: "localhost", port: 1025
 		end
-		return estado_configuracion
 	end
 
 	def inyectar_cuerpo_del_mail(un_cuerpo)
@@ -46,18 +29,16 @@ class EnviadorDeMail
 	end
 
 	def enviar_mail()
-		enviado = nil
-  		begin
-			Mail.deliver do
-			       to @MAIL_ORIGEN
-			     from @mail_destino
-			  subject @asunto
-			     body @cuerpo_de_mail
-			end
-			enviado = true
-		rescue Exception
-			enviado = false
+		origen = @MAIL_ORIGEN
+		destino = @mail_destino
+		un_asunto = @asunto
+		cuerpo = @cuerpo_de_mail
+
+		Mail.deliver do
+		       to origen
+		     from destino
+		  subject un_asunto
+		     body cuerpo
 		end
-		return enviado
 	end
 end
