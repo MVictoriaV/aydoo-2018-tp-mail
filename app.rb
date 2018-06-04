@@ -16,6 +16,7 @@ end
 post '/' do
   parseador_json = ParseadorJson.new
   parseador_json.parsear(request.body.read)
+  datos_del_mail = parseador_json.get_dato
   envia_mail("mensaje")
   status 200
 end
