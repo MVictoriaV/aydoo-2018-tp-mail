@@ -26,6 +26,7 @@ post '/' do
   parseador_json.parsear(request.body.read)
   datos_del_mail = parseador_json.get_dato
   @cuerpo_del_mail = parseador_json.get_cuerpo_mail
+  @contactos = parseador_json.get_contactos
   template = erb :plantilla
   envia_mail(datos_del_mail, template)
   status 200
@@ -36,7 +37,9 @@ def envia_mail(datos_del_mail, template)
   enviador = EnviadorDeMail.new
   enviador.configurar_mail()
   enviador.inyectar_cuerpo_del_mail(template)
-  enviador.inyectar_mail_detino("destino@ejemplo.com")
   enviador.inyectar_asunto(datos_del_mail.asunto)
-  enviador.enviar_mail()
+  @contactos.each do |contacto|
+    enviador.inyectar_mail_detino(contacto.get_mail())
+    enviador.enviar_mail()
+  end
 end

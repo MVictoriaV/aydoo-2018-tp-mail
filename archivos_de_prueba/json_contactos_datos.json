@@ -1,0 +1,37 @@
+{
+    "template":"Hola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_del_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion",
+	"contactos":[
+		{
+			"nombre": "kimi",
+			"apellido": "raikkonen",
+			"mail": "kimi.raikkonen@unmail.com"},
+		{
+			"nombre": "sebastian",
+			"apellido": "vettel",
+			"mail": "sebastian.vettel@unmail.com"},
+		{
+			"nombre": "nico",
+			"apellido": "rosbert",
+			"mail": "nico.rosbert@unmail.com"},
+		{
+			"nombre": "fernando",
+		 	"apellido": "alonso",
+		 	"mail": "fernando.alonso@unmail.com"},
+		{
+			"nombre": "daniel",
+			"apellido": "ricciardo",
+			"mail": "daniel.ricciardo@unmail.com"},
+		{
+			"nombre": "",
+			"apellido": "ricciardo",
+			"mail": "daniel.ricciardo@unmail.com"}
+		],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Invitación a fiesta de fin de año",
+       "nombre_evento":"la cena de fin de año de la UNTREF",
+       "lugar_evento":"el Centro de estudios (avenida Directorio 887, Caseros)",
+       "fecha_del_evento":"5 de diciembre",
+       "Mail_de_confirmacion":"fiesta@untref.com"
+    }
+ }
