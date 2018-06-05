@@ -1,3 +1,4 @@
+require_relative 'esquema_plantilla'
 class Plantilla
 
 	attr_reader :nombre
@@ -7,12 +8,12 @@ class Plantilla
 	attr_reader :mail_de_confirmacion
 	attr_reader :etiquetas_especiales
 
-	def initialize(nombre, nombre_evento, lugar_del_evento, fecha_del_evento, mail_de_confirmacion)
-	    @nombre = nombre
-	    @nombre_evento = nombre_evento
-	    @lugar_del_evento = lugar_del_evento
-	    @fecha_del_evento = fecha_del_evento
-	    @mail_de_confirmacion = mail_de_confirmacion
+	def initialize(un_esquema)
+	    @nombre = un_esquema.nombre
+	    @nombre_evento = un_esquema.nombre_evento
+	    @lugar_del_evento = un_esquema.lugar_del_evento
+	    @fecha_del_evento = un_esquema.fecha_del_evento
+	    @mail_de_confirmacion = un_esquema.mail_de_confirmacion
 	    @etiquetas_especiales = inicializar_etiquetas_especiales
   	end
 

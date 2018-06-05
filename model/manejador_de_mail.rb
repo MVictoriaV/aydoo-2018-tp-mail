@@ -1,6 +1,7 @@
 require_relative 'parseador_json'
 require_relative 'enviador_de_mail'
 require_relative 'plantilla'
+require_relative 'esquema_plantilla'
 require 'erb'
 require 'json'
 
@@ -37,12 +38,15 @@ class ManejadorDeMail
 
   def agregar_cuerpo(nombre_contacto, datos_del_mail, template)
 
-    mi_plantilla = Plantilla.new(
-        nombre_contacto, 
-        datos_del_mail.nombre_evento, 
-        datos_del_mail.lugar_evento, 
-        datos_del_mail.fecha_del_evento, 
-        datos_del_mail.Mail_de_confirmacion)
+
+    un_esquema = EsquemaPlantilla.new(
+                        nombre_contacto, 
+                        datos_del_mail.nombre_evento, 
+                        datos_del_mail.lugar_evento, 
+                        datos_del_mail.fecha_del_evento, 
+                        datos_del_mail.Mail_de_confirmacion)
+    
+    mi_plantilla = Plantilla.new(un_esquema)    
 
     valor_del_template = template
     valor_a_mostrar = mi_plantilla.armar_plantilla(valor_del_template)
