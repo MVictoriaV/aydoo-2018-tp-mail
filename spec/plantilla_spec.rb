@@ -24,5 +24,15 @@ class PlantillaSpec
             rhtml = ERB.new(valor_a_mostrar)
             rhtml.run(mi_plantilla.get_binding)
         end
+
+        it 'se espera que inyecte los parametros con dos etiqueta especial en la plantilla' do
+
+            mi_plantilla = Plantilla.new("Juan", "cena UNTREF", "Bs. As.", "1 de Mayo", "pepe@ejemplo.com")
+            valor_del_template = 'Hola <nombre>,\n\r Hoy es directo <date:d> o inverso <date:i> '
+            valor_a_mostrar = mi_plantilla.armar_plantilla(valor_del_template)
+
+            rhtml = ERB.new(valor_a_mostrar)
+            rhtml.run(mi_plantilla.get_binding)
+        end
     end
 end

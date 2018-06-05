@@ -21,24 +21,30 @@ class Plantilla
 	end
 
 	def armar_plantilla(sentencia)
-		if (contiene_etiqueta_especial?("<date:i>"))
-			sentencia = sentencia.gsub('<date:i>', set_fecha_especial(true))
-		end
+		sentencia = asignar_valor_etiqueta_especial(sentencia)
 		plantilla_armada = %{ #{sentencia} }.gsub(/[<>]/, '<' => ' <%= @', '>' => ' %>')
         return plantilla_armada
 	end
 
-	def contiene_etiqueta_especial?(etiqueta)
-		@etiquetas_especiales.include?(etiqueta)
-	end
 
 	private
 	def inicializar_etiquetas_especiales
-		@etiquetas_especiales = ['<date:i>', '<date:d>']
+		@etiquetas_especiales = {
+			'<date:i>' => set_fecha_especial(true), 
+			'<date:d>' => set_fecha_especial(false)
+		}
 	end
 
 	def set_fecha_especial(es_inversa)
 		formato_de_fecha = es_inversa ? "%Y-%m-%d" : "%d-%m-%Y"
 		fecha_actual = Time.now.strftime(formato_de_fecha)
+	end
+
+	def asignar_valor_etiqueta_especial(sentencia)
+		nueva_sentencia = sentencia
+ 		@etiquetas_especiales.each {|etiqueta, valor|
+      		nueva_sentencia = nueva_sentencia.gsub(etiqueta, valor)
+ 		}
+      	return nueva_sentencia
 	end
  end
