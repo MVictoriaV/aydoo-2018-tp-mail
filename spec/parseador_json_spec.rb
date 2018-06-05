@@ -25,7 +25,7 @@ class ParseadorJsonSpec
         it 'deberia obtener un array de 5 contactos' do
             un_json = levantar_archivo_json()
             parseador_json.parsear(un_json)
-            puts contactos = parseador_json.get_contactos
+            contactos = parseador_json.get_contactos
             expect(contactos.size).to eq 5
         end
     end
