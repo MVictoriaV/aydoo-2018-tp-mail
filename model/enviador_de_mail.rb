@@ -1,13 +1,12 @@
 require 'mail'
 
 class EnviadorDeMail
-	attr_reader :MAIL_ORIGEN
 
 	def initialize()
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
-	    @MAIL_ORIGEN = nil
+	    @mail_origen = nil
   	end
 
   	def configurar_mail()
@@ -18,7 +17,7 @@ class EnviadorDeMail
 	end
 
 	def inyectar_mail_origen(un_mail)
-	    @MAIL_ORIGEN = un_mail
+	    @mail_origen = un_mail
   	end
 
 	def inyectar_cuerpo_del_mail(un_cuerpo)
@@ -34,7 +33,7 @@ class EnviadorDeMail
 	end
 
 	def enviar_mail()
-		origen = @MAIL_ORIGEN
+		origen = @mail_origen
 		destino = @mail_destino
 		un_asunto = @asunto
 		cuerpo = @cuerpo_de_mail

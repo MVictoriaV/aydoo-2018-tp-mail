@@ -9,6 +9,7 @@ class ManejadorDeMail
 
   def initialize(un_json)
     @mi_json = un_json
+    @contactos = nil
   end
 
   def enviar
@@ -43,8 +44,6 @@ class ManejadorDeMail
   end
 
   def agregar_cuerpo(nombre_contacto, datos_del_mail, template)
-
-
     un_esquema = EsquemaPlantilla.new(
                         nombre_contacto, 
                         datos_del_mail.nombre_evento, 
