@@ -16,6 +16,7 @@ class ParseadorJson
 		@cuerpo_del_mail = nil
 		@parser_contacto = nil
 	end
+
 	def parsear(un_json)
 		
 		if un_json.nil? || un_json.empty?

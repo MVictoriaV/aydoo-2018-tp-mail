@@ -38,6 +38,7 @@ def envia_mail(datos_del_mail, template)
   enviador.configurar_mail()
   enviador.inyectar_cuerpo_del_mail(template)
   enviador.inyectar_asunto(datos_del_mail.asunto)
+  enviador.inyectar_mail_origen(datos_del_mail.mail_remitente)
   @contactos.each do |contacto|
     enviador.inyectar_mail_detino(contacto.get_mail())
     enviador.enviar_mail()

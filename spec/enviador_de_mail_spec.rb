@@ -24,6 +24,11 @@ class EnviadorDeMailSpec
             expect(un_asunto).to include("invitacion")
         end
 
+        it 'deberia poder asiganar el mail de origen' do
+            un_mail = mi_enviador_de_mail.inyectar_cuerpo_del_mail("universidad@untref.com")
+            expect(un_mail).to include("universidad@untref.com")
+        end
+
         it 'deberia enviar un mail' do
 
             enviador = double()

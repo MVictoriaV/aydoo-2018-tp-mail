@@ -7,7 +7,7 @@ class EnviadorDeMail
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
-	    @MAIL_ORIGEN = "universidad@untref.com"
+	    @MAIL_ORIGEN = nil
   	end
 
   	def configurar_mail()
@@ -16,6 +16,10 @@ class EnviadorDeMail
 		end
 		return true
 	end
+
+	def inyectar_mail_origen(un_mail)
+	    @MAIL_ORIGEN = un_mail
+  	end
 
 	def inyectar_cuerpo_del_mail(un_cuerpo)
 		@cuerpo_de_mail = un_cuerpo

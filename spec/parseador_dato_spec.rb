@@ -8,7 +8,9 @@ class ProcesadorDatoSpec
 
         it 'deberia recibir un hash con la informacion de del evento y deberia devolver true' do
             parametro = { 
-            	"asunto": "Invitación a fiesta de fin de año", "nombre_evento": "la cena de fin de año de la UNTREF",
+                "remitente": "universidad@untref.com",
+            	"asunto": "Invitación a fiesta de fin de año", 
+                "nombre_evento": "la cena de fin de año de la UNTREF",
             	"lugar_evento": "el Centro de estudios (avenida Directorio 887, Caseros)",
        			"fecha_del_evento": "5 de diciembre",
        			"Mail_de_confirmacion": "fiesta@untref.com"}
