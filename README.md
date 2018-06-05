@@ -1,8 +1,8 @@
-#[TP1] [Ruby] MailMerger
-##AYDOO 2018, UNTREF
+# [TP1] [Ruby] MailMerger
+## AYDOO 2018, UNTREF
 
-###Nievas Soto, Matías.
-###Vazques, María Victoria.
+### Nievas Soto, Matías.
+### Vazques, María Victoria.
 
 Problemática a resolver
 >Realizar una aplicación que permite hacer envíos de mails masivos a partir de una plantilla, un archivo de contactos  y un archivo de datos.
@@ -30,7 +30,7 @@ Paso a paso
 +    
     Para corroborar los mails recibidos, dirigirse con el navegador y ingresar la URL `http://localhost:1080` para visualizar los mails.
 
-###Precondiciones
+### Precondiciones
 Se espera recibir un JSON que contenga los siguientes JSON:
 >template {}
 
@@ -38,13 +38,12 @@ Se espera recibir un JSON que contenga los siguientes JSON:
 
 >datos {}
 
-###Comportamiento
+### Comportamiento
 +	Ante un contacto incompleto, falta de algún atributo, se lanza una excepción y se notifica por consola que se excluyó un contacto.
 +	Ante la falta de alguna de las etiquetas, mencionadas en las precondiciones, lanza una excepción y se retorna el siguiente JSON {"resultado": "error, entrada incorrecta"}.
 +	Al finalizar la ejecución, de no haber errores, se retorna el siguiente JSON {"resultado": "ok"}.
 
-###Pendiente
+### Pendiente
 +   Soporte parcial de tags especiales.
 
-
-
+ [![Build Status](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail.svg?branch=master)](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail)
