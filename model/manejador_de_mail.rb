@@ -13,12 +13,18 @@ class ManejadorDeMail
 
   def enviar
     parseador_json = ParseadorJson.new
-    parseador_json.parsear(@mi_json)
+    
+    begin
+      resultado = parseador_json.parsear(@mi_json)
+    rescue Exception => msg
+        puts msg.message
+    end
+    
     datos_del_mail = parseador_json.get_dato
     @contactos = parseador_json.get_contactos
     template = parseador_json.get_cuerpo_mail
     envia_mail(datos_del_mail, template)
-    return true
+    return resultado
   end
 
   def envia_mail(datos_del_mail, template)

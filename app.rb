@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'erb'
+require 'json'
 require_relative './model/parseador_json'
 require_relative './model/manejador_de_mail'
 
@@ -21,6 +22,6 @@ end
 
 post '/' do
   manejador = ManejadorDeMail.new(request.body.read)
-  manejador.enviar
+  puts manejador.enviar.to_json
   status 200
 end
