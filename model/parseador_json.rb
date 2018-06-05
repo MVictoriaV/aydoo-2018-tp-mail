@@ -4,8 +4,9 @@ require_relative 'parseador_contacto'
 
 class ExcepcionParseador < StandardError
 
-	def initialize(un_mensaje)
-		@mensaje_de_error = un_mensaje
+	attr_reader :object
+	def initialize(object)
+		@object = object
 	end
 end
 
@@ -18,10 +19,9 @@ class ParseadorJson
 	end
 
 	def parsear(un_json)
-		
+		json_ok = {"resultado": "ok"}
 		if un_json.nil? || un_json.empty?
-			raise ExcepcionParseador.new("El parametro ingresado no puede ser nil o estar vacio.")
-  			return false
+  			return lanzar_error
   		end
 		un_json = JSON.parse(un_json)
 
@@ -29,9 +29,16 @@ class ParseadorJson
 		parsea_contacto(un_json)
 		unless (un_json["template"].nil?)
   			@cuerpo_del_mail = un_json["template"]
-  		end		
+  		else
+  			return lanzar_error
+  		end
   		
-  		return true
+  		return json_ok
+	end
+
+	def lanzar_error
+		json_error = '{"resultado": "error, entrada incorrecta"}'
+		raise ExcepcionParseador.new(self), json_error
 	end
 
 	def parsea_dato(un_json)
@@ -39,6 +46,8 @@ class ParseadorJson
   			@dato = ParseadorDato.new
   			datos = un_json["datos"]
   			@dato.parsear(datos)
+  		else
+  			return lanzar_error
   		end
 	end
 
@@ -48,6 +57,8 @@ class ParseadorJson
 			un_parser = ParseadorContacto.new
 			hash_contactos = JSON.parse(contactos.to_json)
 			@parser_contacto = un_parser.parsear(hash_contactos)
+		else
+			return lanzar_error
 		end
 	end
 

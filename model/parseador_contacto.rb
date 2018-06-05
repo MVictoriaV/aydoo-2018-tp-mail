@@ -37,8 +37,8 @@ class ParseadorContacto
       begin
         crear_contacto(nombre,apellido,mail)
         contactos_importados = contactos_importados + 1
-      rescue Exception
-        puts 'ERROR EN CONTACTO'
+      rescue Exception => msg
+        puts msg.message
       end
     end
     return contactos_importados

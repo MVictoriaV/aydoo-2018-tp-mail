@@ -13,13 +13,18 @@ class ParseadorJsonSpec
             return mi_hash.to_json
         end
 
-        it 'deberia recibir un json por parametro y devolver true' do
-            respuesta = parseador_json.parsear('{ "template":"Hola <nombre>," }')
-        	expect(respuesta).to be_truthy
+        it 'debe lanzar excepcion si el json incompleto' do
+          expect{ parseador_json.parsear('{ "template":"Hola <nombre>," }') }.to raise_exception(ExcepcionParseador)
         end
 
-        it 'debe lanzar excepcion si el json es es nil' do
+        it 'debe lanzar excepcion si el json es nil' do
           expect{ parseador_json.parsear(nil) }.to raise_exception(ExcepcionParseador)
+        end
+
+        it 'deberia obtener un resultado ok' do
+            un_json = levantar_archivo_json()
+            json_ok = {"resultado": "ok"}
+            expect(parseador_json.parsear(un_json)).to include(json_ok)
         end
 
         it 'deberia obtener un array de 5 contactos' do
