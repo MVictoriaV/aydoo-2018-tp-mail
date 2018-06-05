@@ -47,4 +47,4 @@ Se espera recibir un JSON que contenga los siguientes JSON:
 +   Soporte parcial de tags especiales.
 
 
-[![Build Status](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail.svg?branch=master)](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail)
+
