@@ -2,7 +2,7 @@
 ## AYDOO 2018, UNTREF
 
 
- [![Build Status](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail.svg?branch=master)](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail)
+[![Build Status](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail.svg?branch=master)](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail)
 
 ### Nievas Soto, Matías.
 ### Vasquez, María Victoria.
