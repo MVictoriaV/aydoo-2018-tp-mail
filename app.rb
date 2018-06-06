@@ -22,6 +22,11 @@ end
 
 post '/' do
   manejador = ManejadorDeMail.new(request.body.read)
-  puts manejador.enviar.to_json
-  status 200
+  respuesta = manejador.enviar
+  if respuesta.nil?
+    status 500
+  else
+    puts respuesta.to_json
+    status 200
+  end
 end

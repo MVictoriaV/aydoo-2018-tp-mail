@@ -19,6 +19,7 @@ class ManejadorDeMail
       resultado = parseador_json.parsear(@mi_json)
     rescue Exception => msg
         puts msg.message
+        return nil
     end
     
     datos_del_mail = parseador_json.get_dato
