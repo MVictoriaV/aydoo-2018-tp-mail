@@ -26,7 +26,7 @@ post '/' do
   if respuesta.nil?
     status 500
   else
-    puts respuesta.to_json
     status 200
+    respuesta.to_json
   end
 end
