@@ -17,13 +17,13 @@ class ArmadorDeEtiquetaSum
 			un_resultado = cadena.match(expresion)
 			segundo_argumento = un_resultado.to_s[1,un_resultado.to_s.length]
 			segundo_argumento = segundo_argumento.to_i
-			plantilla.gsub(expresion_etiqueta, sum(primer_argumento, segundo_argumento).to_s)
+			plantilla = plantilla.gsub(expresion_etiqueta, sum(primer_argumento, segundo_argumento).to_s)
 		end
 		return plantilla
 	end
 
 	def sum(primer_argumento, segundo_argumento)
 		suma = primer_argumento + segundo_argumento
-		return suma
+		return suma.to_s
 	end
 end

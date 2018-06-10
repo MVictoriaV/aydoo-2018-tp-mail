@@ -9,7 +9,6 @@ class ArmadorDeEtiquetaSumSpec
           template = %{<sum(4,3)>}
           un_armador = ArmadorDeEtiquetaSum.new()
           resultado = un_armador.armar(template)
-          puts resultado
           expect(resultado).to include("7")
         end
 
@@ -17,7 +16,6 @@ class ArmadorDeEtiquetaSumSpec
           template = %{<sum(a,3)>}
           un_armador = ArmadorDeEtiquetaSum.new()
           resultado = un_armador.armar(template)
-          puts resultado
           expect(resultado).to include(template)
         end
 
@@ -25,7 +23,6 @@ class ArmadorDeEtiquetaSumSpec
           template = %{<sum(1,a)>}
           un_armador = ArmadorDeEtiquetaSum.new()
           resultado = un_armador.armar(template)
-          puts resultado
           expect(resultado).to include(template)
         end
     end
