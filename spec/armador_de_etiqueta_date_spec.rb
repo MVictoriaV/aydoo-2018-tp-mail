@@ -27,11 +27,11 @@ class ArmadorDeEtiquetaDateSpec
 			expect(resultado).to include(resultado_esperado)
         end
 
-        it 'deberia ser nil etiqueta no soportada' do
+        it 'deberia retornar el template original por etiqueta no soportada' do
           	template = %{<date:r>}
           	un_armador = ArmadorDeEtiquetaDate.new()
 			resultado = un_armador.armar(template)
-			expect(resultado).to eq nil
+			expect(resultado).to include(template)
         end
     end
 end

@@ -7,6 +7,7 @@ class ArmadorDeEtiquetaTime
 			un_formato = formato_hora(una_etiqueta.to_s)
 			plantilla.gsub!(expresion) {|etiqueta| etiqueta.gsub(expresion, un_formato)}
 		end
+		return plantilla
 	end
 
 	def formato_hora(una_etiqueta)

@@ -17,6 +17,7 @@ class ArmadorDeEtiquetaEmpty
 			segundo_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
 			plantilla.gsub(expresion_etiqueta, empty(primer_argumento, segundo_argumento))
 		end
+		return plantilla
 	end
 
 	def empty(primer_argumento, segundo_argumento)

@@ -26,11 +26,11 @@ class ArmadorDeEtiquetaTimeSpec
           expect(resultado).to include(resultado_esperado)
         end
 
-        it 'deberia ser nil etiqueta no soportada' do
+        it 'deberia retornar el template original por etiqueta no soportada' do
           template = %{<time:r>}
           un_armador = ArmadorDeEtiquetaTime.new()
           resultado = un_armador.armar(template)
-          expect(resultado).to eq nil
+          expect(resultado).to include(template)
         end
     end
 end
