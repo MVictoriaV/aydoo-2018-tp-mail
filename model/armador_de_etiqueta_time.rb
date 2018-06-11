@@ -1,3 +1,5 @@
+require_relative 'armador_de_etiqueta_empty'
+
 class ArmadorDeEtiquetaTime
 
 	def armar(plantilla) 
@@ -7,7 +9,8 @@ class ArmadorDeEtiquetaTime
 			un_formato = formato_hora(una_etiqueta.to_s)
 			plantilla = plantilla.gsub!(expresion) {|etiqueta| etiqueta.gsub(expresion, un_formato)}
 		end
-		return plantilla
+		armador = ArmadorDeEtiquetaEmpty.new
+		armador.armar(plantilla)
 	end
 
 	def formato_hora(una_etiqueta)

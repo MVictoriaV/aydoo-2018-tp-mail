@@ -1,5 +1,5 @@
 {
-    "template":"Hola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.La direccion",
+    "template":"Hola <nombre>,\n\r Por medio del presente mail te estamos invitando a <nombre_evento>, que se desarrollará en <lugar_evento>, el día <fecha_del_evento>. Por favor confirmar su participación enviando un mail a <mail_de_confirmacion>.\n\rSin otro particular.\n\r<date:i>\n\r<empty(uruguay,argentina)>\n\r<sum(4,3)>\n\r<time:24>\n\rLa direccion",
 	"contactos":[
 		{
 			"nombre": "kimi",

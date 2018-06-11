@@ -56,6 +56,7 @@ class ManejadorDeMail
   end
 
   private
+  
   def obtener_plantilla_con_formato(plantilla)
     armador = ArmadorDePlantilla.new
     plantilla_formateada = armador.armar(plantilla)

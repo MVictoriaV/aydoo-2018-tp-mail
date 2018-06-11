@@ -1,3 +1,4 @@
+require_relative 'armador_de_etiqueta_sum'
 class ArmadorDeEtiquetaEmpty
 
 	def armar(plantilla) 
@@ -17,7 +18,8 @@ class ArmadorDeEtiquetaEmpty
 			segundo_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
 			plantilla = plantilla.gsub(expresion_etiqueta, empty(primer_argumento, segundo_argumento))
 		end
-		return plantilla
+		armador = ArmadorDeEtiquetaSum.new
+		armador.armar(plantilla)
 	end
 
 	def empty(primer_argumento, segundo_argumento)
