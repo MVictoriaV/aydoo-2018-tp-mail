@@ -1,6 +1,5 @@
 require_relative 'parseador_json'
 require_relative 'enviador_de_mail'
-require_relative 'plantilla'
 require_relative 'plantilla_mail'
 require_relative 'esquema_plantilla'
 require_relative 'armador_de_plantilla'

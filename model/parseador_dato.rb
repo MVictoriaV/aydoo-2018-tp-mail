@@ -1,4 +1,8 @@
+require_relative '../modules/validador_de_datos'
+
 class ParseadorDato
+
+	include ValidadorDeDatos
 
 	def initialize()
 		@dato = nil
@@ -12,5 +16,9 @@ class ParseadorDato
 
 	def dato_evento
 		return @dato 
+	end
+
+	def validar_dato(dato_hash)
+		return validar(dato_hash)	
 	end
 end

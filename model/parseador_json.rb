@@ -43,7 +43,11 @@ class ParseadorJson
 
 	def parsea_dato(un_json)
 		unless (un_json["datos"].nil?)
-  			@dato = ParseadorDato.new
+	  		@dato = ParseadorDato.new
+	  		resultado = @dato.validar_dato(un_json["datos"])
+	  		if !resultado
+	  			return lanzar_error
+	  		end
   			datos = un_json["datos"]
   			@dato.parsear(datos)
   		else
