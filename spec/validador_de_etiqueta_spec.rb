@@ -50,5 +50,19 @@ class ValidadorDeEtiquetaSpec
           esta_ok = validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral)
           expect(esta_ok).to be_truthy
         end
+
+        it 'deberia lanzar una excepcion al no contener las 3 etiquetas requeridas' do
+
+          etiquetas_requeridas = [
+                              "template",
+                              "contactos",
+                              "datos"]
+          parametro_incorrectos_json = File.read("./archivos_de_prueba/data2_esquema_incorrecto.json")
+          hash_gral = JSON.parse(parametro_incorrectos_json)
+
+          expect{
+                validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral)
+          }.to raise_exception(ExcepcionEtiqueta)
+        end
     end
 end
