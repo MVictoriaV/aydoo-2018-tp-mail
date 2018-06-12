@@ -22,5 +22,22 @@ class ValidadorDeEtiquetaSpec
           esta_ok = validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral['datos'])
           expect(esta_ok).to be_truthy
         end
+
+        it 'deberia lanzar una excepcion al no contener una etiqueta de las requeridas' do
+
+          etiquetas_requeridas = [
+                              "remitente", 
+                              "asunto_", 
+                              "nombre_evento", 
+                              "lugar_evento", 
+                              "fecha_del_evento", 
+                              "mail_de_confirmacion"]
+          hash_gral = JSON.parse(parametro_json)
+
+          expect{
+                validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral['datos'])
+          }.to raise_exception(ExcepcionEtiqueta)
+
+        end
     end
 end

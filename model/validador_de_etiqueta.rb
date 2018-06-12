@@ -18,7 +18,6 @@ class ValidadorDeEtiqueta
 		un_hash = JSON.parse(etiquetas_a_validar.to_json)
 		etiquetas_requeridas.each { |item| 
 			unless un_hash.has_key?(item)
-				puts 'hubo una etiqueta que no estaba'
 				raise ExcepcionEtiqueta.new(self), 'Etiqueta no contenida'
 			end
 		}
