@@ -15,18 +15,16 @@ class ManejadorDeMail
   end
 
   def enviar
-    begin
-      resultado = armar_estructura_del_mail
-    rescue Exception => msg
-      puts msg.message
+    
+    resultado = armar_estructura_del_mail
+
+    if resultado == nil
       return nil
     end
 
-    unless resultado
-      template = @parseador_json.get_cuerpo_mail
-      template_formateado = obtener_plantilla_con_formato(template)
-      envia_mail(datos_del_mail, template_formateado)
-    end
+    template = @parseador_json.get_cuerpo_mail
+    template_formateado = obtener_plantilla_con_formato(template)
+    envia_mail(datos_del_mail, template_formateado)
     
     return resultado
   end
