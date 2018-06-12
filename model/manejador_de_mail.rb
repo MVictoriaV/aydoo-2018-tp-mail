@@ -15,7 +15,12 @@ class ManejadorDeMail
   end
 
   def enviar
-    resultado = armar_estructura_del_mail
+    begin
+      resultado = armar_estructura_del_mail
+    rescue Exception => msg
+      puts msg.message
+      return nil
+    end
     template_formateado = obtener_plantilla_con_formato(@template)
     envia_mail(datos_del_mail, template_formateado)
     
