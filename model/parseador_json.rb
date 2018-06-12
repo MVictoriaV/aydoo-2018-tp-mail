@@ -29,21 +29,12 @@ class ParseadorJson
 		rescue Exception => e
 			return lanzar_error
 		end
-
 		json_ok = {"resultado": "ok"}
-		if un_json.nil? || un_json.empty?
-  			return lanzar_error
-  		end
-		un_json = JSON.parse(un_json)
 
+		un_json = JSON.parse(un_json)
 		parsea_dato(un_json)
 		parsea_contacto(un_json)
-		unless (un_json["template"].nil?)
-  			@cuerpo_del_mail = un_json["template"]
-  		else
-  			return lanzar_error
-  		end
-  		
+  		@cuerpo_del_mail = un_json["template"]
   		return json_ok
 	end
 
