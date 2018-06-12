@@ -35,16 +35,24 @@ Paso a paso
 
 ### Precondiciones
 Se espera recibir un JSON que contenga los siguientes JSON:
->template {}
+>Contactos: se espera recibir un JSON de contactos que contengan las siguientes claves:
++    nombre, apellido y mail.
 
->contactos {}
+>Template: se espera recibir un JSON template que en su valor contenga el cuerpo del mail a enviar.
 
->datos {}
+>Datos: se espera recibir un JSON datos que contenga, de carácter obligatorio, las siguientes claves: 
++   remitente, asunto, nombre_evento, lugar_evento, fecha_del_evento y mail_de_confirmacion.
+
+### Aclaración
+Los placeholders estándar, que pudieran existir dentro del JSON template, deben ser idénticos a las claves que contiene el JSON de datos.
+>Ejemplo: si en Template existiera un placeholder <nombre_evento> Datos debe contener la clave nombre_evento. En caso de que en Datos la clave que contenga sea, por ejemplo, nombre_del_evento no se realizará el reemplazo.  
 
 ### Comportamiento
 +	Ante un contacto incompleto, falta de algún atributo, se lanza una excepción y se notifica por consola que se excluyó un contacto.
 +	Ante la falta de alguna de las etiquetas, mencionadas en las precondiciones, lanza una excepción y se retorna el siguiente JSON {"resultado": "error, entrada incorrecta"}.
 +	Al finalizar la ejecución, de no haber errores, se retorna el siguiente JSON {"resultado": "ok"}.
-
-### Pendiente
-+   Soporte parcial de tags especiales
++   Soporte de etiquetas especiales.
+    +   < date:i|d>
+    +   <empty(pais,argentina)>
+    +   <sum(monto1, monto2)>
+    +   <time|time:12>
