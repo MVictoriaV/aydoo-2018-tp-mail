@@ -39,7 +39,8 @@ class ManejadorDeMail
 
     @contactos.each do |contacto|
       enviador.inyectar_mail_detino(contacto.get_mail())
-      cuerpo = agregar_cuerpo(contacto.get_nombre(), datos_del_mail, template_formateado)
+      item = crear_esquema_plantilla(contacto.get_nombre(), datos_del_mail)
+      cuerpo = cargar_cuerpo(item, template_formateado)
       enviador.inyectar_cuerpo_del_mail(cuerpo)
       enviador.enviar_mail()
     end
@@ -47,15 +48,18 @@ class ManejadorDeMail
   end
 
   private
-  def agregar_cuerpo(nombre_contacto, datos_del_mail, template_formateado)
+  def crear_esquema_plantilla(nombre_contacto, datos_del_mail)
     item = EsquemaPlantilla.new(nombre_contacto, datos_del_mail)
-    plantilla = PlantillaMail.new(item, template_formateado)
+  end
+
+  private
+  def cargar_cuerpo(item, plantilla_formateada)
+    plantilla = PlantillaMail.new(item, plantilla_formateada)
     resultado = plantilla.renderizar
     return resultado
   end
 
   private
-  
   def obtener_plantilla_con_formato(plantilla)
     armador = ArmadorDePlantilla.new
     plantilla_formateada = armador.armar(plantilla)
