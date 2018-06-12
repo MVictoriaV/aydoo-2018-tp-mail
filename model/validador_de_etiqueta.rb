@@ -12,7 +12,7 @@ class ValidadorDeEtiqueta
 
 	def validar(etiquetas_requeridas, etiquetas_a_validar)
 
-		if etiquetas_a_validar.nil?
+		if etiquetas_a_validar.nil? || etiquetas_a_validar.empty?
 			raise ExcepcionEtiqueta.new(self), 'Etiqueta nula'
 		end
 		un_hash = JSON.parse(etiquetas_a_validar.to_json)

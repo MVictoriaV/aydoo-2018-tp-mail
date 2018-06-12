@@ -23,19 +23,18 @@ class ParseadorJson
 	end
 
 	def parsear(un_json)
-
 		begin
 			validar_etiquetas(un_json)
 		rescue Exception => e
 			return lanzar_error
 		end
-		json_ok = {"resultado": "ok"}
-
 		un_json = JSON.parse(un_json)
-		parsea_dato(un_json)
-		parsea_contacto(un_json)
+
+		parsea_dato(un_json["datos"])
+		parsea_contacto(un_json["contactos"])
   		@cuerpo_del_mail = un_json["template"]
-  		return json_ok
+
+  		return {"resultado": "ok"}
 	end
 
 	def lanzar_error
@@ -43,16 +42,15 @@ class ParseadorJson
 		raise ExcepcionParseador.new(self), json_error
 	end
 
-	def parsea_dato(un_json)
+	def parsea_dato(dato_h)
   		@dato = ParseadorDato.new
-		@dato.parsear(un_json["datos"])
+		@dato.parsear(dato_h)
 	end
 
-	def parsea_contacto(un_json)
-		unless (un_json["contactos"].nil?)
-			contactos = un_json["contactos"]
+	def parsea_contacto(contacto_h)
+		unless (contacto_h.nil?)
 			un_parser = ParseadorContacto.new
-			hash_contactos = JSON.parse(contactos.to_json)
+			hash_contactos = JSON.parse(contacto_h.to_json)
 			@parser_contacto = un_parser.parsear(hash_contactos)
 		else
 			return lanzar_error
