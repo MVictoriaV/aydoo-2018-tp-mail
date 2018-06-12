@@ -44,18 +44,8 @@ class ParseadorJson
 	end
 
 	def parsea_dato(un_json)
-
-		unless (un_json["datos"].nil?)
-	  		@dato = ParseadorDato.new
-	  		resultado = @dato.validar_dato(un_json["datos"])
-	  		if !resultado
-	  			return lanzar_error
-	  		end
-  			datos = un_json["datos"]
-  			@dato.parsear(datos)
-  		else
-  			return lanzar_error
-  		end
+  		@dato = ParseadorDato.new
+		@dato.parsear(un_json["datos"])
 	end
 
 	def parsea_contacto(un_json)
