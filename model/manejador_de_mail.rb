@@ -22,9 +22,11 @@ class ManejadorDeMail
       return nil
     end
 
-    template = @parseador_json.get_cuerpo_mail
-    template_formateado = obtener_plantilla_con_formato(template)
-    envia_mail(datos_del_mail, template_formateado)
+    unless resultado
+      template = @parseador_json.get_cuerpo_mail
+      template_formateado = obtener_plantilla_con_formato(template)
+      envia_mail(datos_del_mail, template_formateado)
+    end
     
     return resultado
   end
