@@ -1,6 +1,8 @@
 require 'json'
 require_relative 'parseador_dato'
 require_relative 'parseador_contacto'
+require_relative 'validador_de_etiqueta'
+require_relative '../constantes/constantes_datos'
 
 class ExcepcionParseador < StandardError
 
@@ -12,6 +14,8 @@ end
 
 class ParseadorJson
 
+	include Constantes
+
 	def initialize()
 		@dato = nil
 		@cuerpo_del_mail = nil
@@ -19,6 +23,13 @@ class ParseadorJson
 	end
 
 	def parsear(un_json)
+
+		begin
+			validar_etiquetas(un_json)
+		rescue Exception => e
+			return lanzar_error
+		end
+
 		json_ok = {"resultado": "ok"}
 		if un_json.nil? || un_json.empty?
   			return lanzar_error
@@ -42,6 +53,7 @@ class ParseadorJson
 	end
 
 	def parsea_dato(un_json)
+
 		unless (un_json["datos"].nil?)
 	  		@dato = ParseadorDato.new
 	  		resultado = @dato.validar_dato(un_json["datos"])
@@ -76,5 +88,17 @@ class ParseadorJson
 
 	def get_cuerpo_mail
 		return @cuerpo_del_mail
+	end
+
+	private
+	def validar_etiquetas(contenido)
+		validador = ValidadorDeEtiqueta.new
+		begin
+		  etiquetas_json = JSON.parse(contenido)
+	      validador.validar(constantes_requeridas, etiquetas_json)
+	      validador.validar(get_constantes_datos, etiquetas_json['datos'])
+	    rescue ExcepcionEtiqueta => msg
+	        '{"resultado": "error, entrada incorrecta"}'
+	    end
 	end
 end
