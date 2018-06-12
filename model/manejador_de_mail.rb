@@ -22,7 +22,7 @@ class ManejadorDeMail
       return nil
     end
 
-    una_plantilla = @template
+    una_plantilla = @template.to_s
     template_formateado = obtener_plantilla_con_formato(una_plantilla)
     envia_mail(datos_del_mail, template_formateado)
     
