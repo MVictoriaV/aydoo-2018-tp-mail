@@ -11,7 +11,7 @@ class ManejadorDeMail
   def initialize(un_json)
     @mi_json = un_json
     @contactos = nil
-    @template = nil
+    @parseador_json = nil
   end
 
   def enviar
@@ -22,26 +22,25 @@ class ManejadorDeMail
       return nil
     end
 
-    una_plantilla = @template.to_s
-    template_formateado = obtener_plantilla_con_formato(una_plantilla)
+    template = @parseador_json.get_cuerpo_mail
+    template_formateado = obtener_plantilla_con_formato(template)
     envia_mail(datos_del_mail, template_formateado)
     
     return resultado
   end
 
   def armar_estructura_del_mail
-    parseador_json = ParseadorJson.new
+    @parseador_json = ParseadorJson.new
     
     begin
-        resultado = parseador_json.parsear(@mi_json)
+        resultado = @parseador_json.parsear(@mi_json)
     rescue Exception => msg
         puts msg.message
         return nil
     end
     
-    datos_del_mail = parseador_json.get_dato
-    @contactos = parseador_json.get_contactos
-    @template = parseador_json.get_cuerpo_mail
+    datos_del_mail = @parseador_json.get_dato
+    @contactos = @parseador_json.get_contactos
     return resultado
   end
 
