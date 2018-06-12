@@ -37,7 +37,18 @@ class ValidadorDeEtiquetaSpec
           expect{
                 validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral['datos'])
           }.to raise_exception(ExcepcionEtiqueta)
+        end
 
+        it 'retorna true al validar que el json contenga las 3 etiquetas requeridas template, contactos y datos' do
+
+          etiquetas_requeridas = [
+                              "template",
+                              "contactos",
+                              "datos"]
+          hash_gral = JSON.parse(parametro_json)
+          
+          esta_ok = validador_de_etiquetas.validar(etiquetas_requeridas, hash_gral)
+          expect(esta_ok).to be_truthy
         end
     end
 end
