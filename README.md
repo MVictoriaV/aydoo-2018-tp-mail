@@ -43,9 +43,13 @@ Se espera recibir un JSON que contenga los siguientes JSON:
 >Datos: se espera recibir un JSON datos que contenga, de carácter obligatorio, las siguientes claves: 
 +   remitente, asunto, nombre_evento, lugar_evento, fecha_del_evento y mail_de_confirmacion.
 
-### Aclaración
+### Aclaraciones
 Los placeholders estándar, que pudieran existir dentro del JSON template, deben ser idénticos a las claves que contiene el JSON de datos.
->Ejemplo: si en Template existiera un placeholder <nombre_evento> Datos debe contener la clave nombre_evento. En caso de que en Datos la clave que contenga sea, por ejemplo, nombre_del_evento no se realizará el reemplazo.  
+>Ejemplo: si en Template existiera un placeholder <nombre_evento> Datos debe contener la clave nombre_evento. En caso de que en Datos la clave que contenga sea, por ejemplo, nombre_del_evento no se realizará el reemplazo.
+
+El diagrama Secuencia enviar mail contiene una vista general de la solución implementada. Para poder obtener una visión más exacta es necesario observar los diagramas
+>Secuencia armar estructura de contactos y datos del evento.
+>Secuencia de armado del template.
 
 ### Comportamiento
 +	Ante un contacto incompleto, falta de algún atributo, se lanza una excepción y se notifica por consola que se excluyó un contacto.
