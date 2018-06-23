@@ -13,7 +13,7 @@ describe 'ArmadorDeTemplate' do
         formato_de_fecha = "%H:%M"
         hora_actual = Time.now.strftime(formato_de_fecha)
 
-        template = %{<date:i>  <empty(uruguay,argentina)> <sum(4,3)> <time:24>}
+        template = %{<date:i>  <empty(uruguay,argentina)> <sum(4,3)> <time:12>}
 
         resultado = un_armador.armar(template)
         resultado_esperado = fecha_actual.to_s + "  uruguay 7 " + hora_actual.to_s
@@ -25,8 +25,9 @@ describe 'ArmadorDeTemplate' do
 
         formato_de_fecha = "%H:%M"
         hora_actual = Time.now.strftime(formato_de_fecha)
+        hora_actual = Time.now.strftime("%R")
 
-        template = %{Hola <nombre> <date:r>  <empty(uruguay,argentina)> <sum(4,3)> <time:24>}
+        template = %{Hola <nombre> <date:r>  <empty(uruguay,argentina)> <sum(4,3)> <time>}
         resultado = un_armador.armar(template)
         resultado_esperado = "Hola <%=@item.nombre%> <date:r>  uruguay 7 " + hora_actual.to_s
         expect(resultado).to include(resultado_esperado)

@@ -7,11 +7,11 @@ require_relative 'armador_de_plantilla'
 class ArmadorDeTemplate
 
     def initialize
-        @armadores = [  ArmadorDePlantilla.new,
-                        ArmadorDeEtiquetaDate.new,
+        @armadores = [  ArmadorDeEtiquetaDate.new,
                         ArmadorDeEtiquetaTime.new,
                         ArmadorDeEtiquetaEmpty.new,
-                        ArmadorDeEtiquetaSum.new]
+                        ArmadorDeEtiquetaSum.new,
+                        ArmadorDePlantilla.new]
     end
 
     def armar(plantilla)
