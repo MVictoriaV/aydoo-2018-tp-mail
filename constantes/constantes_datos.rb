@@ -1,5 +1,7 @@
 module Constantes
 
+	ETIQUETAS_REQUERIDAS = ["template", "contactos", "datos"].freeze
+
 	def constantes_requeridas
 		constantes_requeridas = [
 				"template",
