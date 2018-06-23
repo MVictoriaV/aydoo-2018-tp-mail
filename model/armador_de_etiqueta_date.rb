@@ -1,5 +1,3 @@
-require_relative 'armador_de_etiqueta_time'
-
 class ArmadorDeEtiquetaDate
 
 	def armar(plantilla) 

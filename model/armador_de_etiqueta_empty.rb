@@ -1,4 +1,3 @@
-require_relative 'armador_de_etiqueta_sum'
 require_relative 'etiqueta_empty_con_reemplazos_nulos_exception'
 require_relative 'etiqueta_empty_con_primer_argumento_nulo_exception.rb'
 require_relative 'etiqueta_empty_con_segundo_argumento_nulo_exception.rb'
@@ -26,7 +25,14 @@ class ArmadorDeEtiquetaEmpty
 	end
 
 	def empty(primer_argumento, segundo_argumento)
+    	comprobar_argumentos(primer_argumento, segundo_argumento)
+		unless (primer_argumento == nil || primer_argumento.length == 0) || primer_argumento == 'pais'
+			return primer_argumento
+		end
+		return segundo_argumento
+	end
 
+	def comprobar_argumentos(primer_argumento, segundo_argumento)
 		if primer_argumento == 'nil' && segundo_argumento == 'nil'
       		raise EtiquetaEmptyConReemplazosNulosException.new
     	end
@@ -38,10 +44,5 @@ class ArmadorDeEtiquetaEmpty
     	if segundo_argumento == 'nil'
       		raise EtiquetaEmptyConSegundoArgumentoNuloException.new
     	end
-
-		unless (primer_argumento == nil || primer_argumento.length == 0) || primer_argumento == 'pais'
-			return primer_argumento
-		end
-		return segundo_argumento
 	end
 end
