@@ -31,4 +31,16 @@ describe 'ProcesadorEstructural' do
             procesador.crear_estructura(JSON.parse(punto_de_entrada_incorrecta))
           }.to raise_exception(EtiquetaInexistenteException)
     end
+
+    it 'Recibe un json como parametro con los 3 campos necesarios' do      
+
+      procesador.crear_estructura(JSON.parse(punto_de_entrada))      
+      resultado_template = procesador.estructura[:template]
+      resultado_contactos = procesador.estructura[:contactos]
+      resultado_datos = procesador.estructura[:datos]
+
+      expect(resultado_template).to be
+      expect(resultado_contactos).to be
+      expect(resultado_datos).to be
+    end
 end
