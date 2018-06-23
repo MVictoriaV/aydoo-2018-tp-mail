@@ -8,7 +8,6 @@ class ArmadorDePlantilla
 		if una_etiqueta != nil
 			plantilla = plantilla.gsub!(expresion) {|etiqueta| etiqueta.gsub(/[<>]/, '<' => '<%=@item.', '>' => '%>')}
 		end
-		armador = ArmadorDeEtiquetaDate.new
-		armador.armar(plantilla)
+		return plantilla
 	end
 end
