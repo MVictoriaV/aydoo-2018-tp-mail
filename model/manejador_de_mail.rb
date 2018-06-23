@@ -2,7 +2,7 @@ require_relative 'parseador_json'
 require_relative 'enviador_de_mail'
 require_relative 'plantilla_mail'
 require_relative 'esquema_plantilla'
-require_relative 'armador_de_plantilla'
+require_relative 'armador_de_template'
 require 'erb'
 require 'json'
 
@@ -75,7 +75,7 @@ class ManejadorDeMail
 
   private
   def obtener_plantilla_con_formato(plantilla)
-    armador = ArmadorDePlantilla.new
+    armador = ArmadorDeTemplate.new
     plantilla_formateada = armador.armar(plantilla)
     return plantilla_formateada
   end
