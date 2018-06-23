@@ -12,8 +12,6 @@ class ParseadorContacto
     return @contactos
   end
 
-
-  ##REFACTORIZAR
   def genera_contactos(un_hash)
     contactos_importados = 0
     un_hash.each do |clave, valor|
