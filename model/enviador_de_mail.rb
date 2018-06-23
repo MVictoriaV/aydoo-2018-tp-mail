@@ -1,4 +1,8 @@
 require 'mail'
+require 'socket'
+require 'timeout'
+require_relative 'servicio_de_mail_exception'
+
 
 class EnviadorDeMail
 
@@ -33,6 +37,9 @@ class EnviadorDeMail
 	end
 
 	def enviar_mail()
+		unless el_puerto_esta_levantado?('127.0.0.1', 1080)
+			raise ServicioDeMailException.new
+		end
 		origen = @mail_origen
 		destino = @mail_destino
 		un_asunto = @asunto
@@ -45,5 +52,23 @@ class EnviadorDeMail
 		     body cuerpo
 		end
 		return true
+
+	end
+
+	def el_puerto_esta_levantado?(ip, puerto)
+
+		begin
+			Timeout::timeout(1) do
+		  	begin
+		    	socket = TCPSocket.new(ip, puerto)
+		    	socket.close
+		    	return true
+		  	rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+		    	return false
+		  	end
+		end
+		rescue Timeout::Error
+		end
+	  	return false
 	end
 end

@@ -38,5 +38,9 @@ class EnviadorDeMailSpec
             enviador.stub(:configurar_mail).and_return(true)
             enviador.stub(:enviar_mail).and_return(true)
         end
+
+        it 'deberia lanzar excepcion de servicio de mail no disponible' do
+            expect{mi_enviador_de_mail.enviar_mail}.to raise_exception(ServicioDeMailException)
+        end
     end
 end
