@@ -6,14 +6,14 @@ require_relative 'servicio_de_mail_exception'
 
 class EnviadorDeMail
 
-	def initialize()
+	def initialize
 	    @cuerpo_de_mail = nil
 	    @mail_destino = nil
 	    @asunto = nil
 	    @mail_origen = nil
   	end
 
-  	def configurar_mail()
+  	def configurar_mail
 		Mail.defaults do
 		  	delivery_method :smtp, address: "localhost", port: 1025
 		end
@@ -36,10 +36,11 @@ class EnviadorDeMail
 		@asunto = un_asunto
 	end
 
-	def enviar_mail()
+	def enviar_mail
 		unless el_puerto_esta_levantado?('127.0.0.1', 1080)
 			raise ServicioDeMailException.new
 		end
+		
 		origen = @mail_origen
 		destino = @mail_destino
 		un_asunto = @asunto

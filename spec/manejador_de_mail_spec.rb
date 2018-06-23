@@ -38,13 +38,9 @@ class ManejadorDeMailSpec
 		end
 
 		it 'mock deberia enviar mails' do
-  			manejador = double
-  			un_json = levantar_archivo_json()
-            parseador_json = ParseadorJson.new
-		    parseador_json.parsear(un_json)
-		    datos_del_mail = parseador_json.get_dato
-		    template = parseador_json.get_cuerpo_mail
-		    manejador.stub(:enviar).with(datos_del_mail, template).and_return(true)
+            un_json = levantar_archivo_json()
+            un_manejador = ManejadorDeMail.new(un_json)
+            un_manejador.armar_estructura_del_mail
 		end
 	end
 end

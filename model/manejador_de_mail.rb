@@ -26,7 +26,8 @@ class ManejadorDeMail
     
     template = @parseador_json.get_cuerpo_mail
     template_formateado = obtener_plantilla_con_formato(template)
-    envia_mail(datos_del_mail, template_formateado)
+    
+    resultado = envia_mail(datos_del_mail, template_formateado)
     
     return resultado
   end
@@ -56,7 +57,12 @@ class ManejadorDeMail
       item = crear_esquema_plantilla(contacto.get_nombre(), datos_del_mail)
       cuerpo = cargar_cuerpo(item, template_formateado)
       enviador.inyectar_cuerpo_del_mail(cuerpo)
-      enviador.enviar_mail()
+      begin
+        enviador.enviar_mail()
+      rescue Exception => msg
+        puts msg.message
+        return nil
+      end
     end
     return true
   end
