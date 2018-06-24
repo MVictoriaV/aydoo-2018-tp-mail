@@ -14,8 +14,10 @@ class ManejadorDeEMail
       @email = EMail.new(procesador.estructura)
       @email.cargar_cuerpo_a_contacto
     rescue Exception => e
+      @email = nil
       raise e
     end
+    return @email.nil?
   end
 
   def enviar

@@ -69,6 +69,7 @@ class EnviadorDeMail
 			     body cuerpo
 			end
 		end
+		return true
 	end
 
 	def el_puerto_esta_levantado?(ip, puerto)
