@@ -1,12 +1,10 @@
-class ExcepcionContacto < StandardError
-  attr_reader :object
-
-  def initialize(object)
-    @object = object
-  end
-end
+require_relative 'contacto_exception'
 
 class Contacto
+
+  attr_accessor :nombre
+  attr_accessor :apellido
+  attr_accessor :mail
 
 	def initialize(un_nombre, un_apellido, un_mail)
 		validar_atributo(un_nombre, "El contacto debe tener un nombre.")
@@ -17,21 +15,9 @@ class Contacto
 		@mail = un_mail
   end
 
-  def validar_atributo(un_argumento, un_mensaje)
-		if un_argumento == nil or un_argumento.size == 0  
-	  	raise ExcepcionContacto.new(self), un_mensaje
-	  end
-  end
+  private
 
-  def get_nombre()
-   	return @nombre
-  end
-
-  def get_apellido()
-  	return @apellido
-  end
-
-  def get_mail()
-  	return @mail
+  def validar_atributo(argumento, mensaje_de_error)
+	  raise ContactoException.new(mensaje_de_error) if (argumento.nil? || argumento.empty?)
   end
 end

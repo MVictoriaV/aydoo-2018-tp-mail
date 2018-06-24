@@ -1,34 +1,40 @@
 require_relative '../model/parseador_contacto'
-require 'yaml'
 
-class ParseadorContactoSpec
+describe 'ParseadorContacto' do
 
+    it 'deberia poder generar un contacto' do
 
-    describe 'ParseadorContacto' do
-        
-        mi_parseador = ParseadorContacto.new()
-        un_archivo = "json_contactos_datos.txt"
-        def levantar_archivo_json(un_archivo, un_id)
-            mi_hash = YAML.load_file(un_archivo)
-            return JSON.parse(mi_hash[un_id].to_json)
-        end
+        parseador = ParseadorContacto.new
 
-        it 'deberia importar todos los contactos de la lista' do
-            contactos = levantar_archivo_json(un_archivo, "contactos")
-            expect(mi_parseador.parsear(contactos).size).to eq 5
-        end
+        un_contacto_de_entrada = [
+            {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]
 
-        it 'deberia poder generar un contacto' do
-            un_json = {"contactos":{"nombre": "kimi","apellido": "raikkonen","mail": "kimi.raikkonen@unmail.com"}}
-            un_contacto = JSON.parse(un_json.to_json)
-            expect(mi_parseador.genera_contactos(un_contacto)).to eq 1
-        end
+        parseador.parsear(un_contacto_de_entrada)
 
-        it 'deberia tener un array de 5 contactos' do
-            un_parseador = ParseadorContacto.new()
-            contactos = levantar_archivo_json(un_archivo, "contactos")
-            un_parseador.parsear(contactos)
-            expect(un_parseador.get_contactos().size).to eq 5
-        end
+        expect(parseador.contactos.size).to eq 1
     end
+
+    it 'deberia tener un array de 2 contactos' do
+        
+        parseador = ParseadorContacto.new
+
+        dos_contactos_de_entrada = [
+            {"nombre"=>"juan", "apellido"=>"perez", "mail"=>"juanperez@test.com"},
+            {"nombre"=>"maria", "apellido"=>"gonzalez", "mail"=>"mariagonzalez@test.com"}]
+
+        parseador.parsear(dos_contactos_de_entrada)
+
+        expect(parseador.contactos.size).to eq 2
+    end
+
+    it 'deberia ser cero la cantidad de contactos retornada' do
+        
+        parseador = ParseadorContacto.new
+
+        sin_contactos = []
+
+        parseador.parsear(sin_contactos)
+
+        expect(parseador.contactos.size).to eq 0
+    end    
 end

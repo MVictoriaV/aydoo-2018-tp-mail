@@ -19,7 +19,9 @@ class EMail
 		@asunto = estructura[:datos]["asunto"]
 
 		parseador = ParseadorContacto.new
-		@contactos = parseador.parsear(estructura[:contactos])
+		parseador.parsear(estructura[:contactos])
+		@contactos = parseador.contactos
+
 		@valores_para_template = estructura[:datos]
 		@cuerpo = estructura[:template]
 	end
@@ -31,8 +33,8 @@ class EMail
 
 		armador_template.armar(@cuerpo)
 		@contactos.each do |item|
-			plantilla_completa = preparar_datos_para_template(item.get_nombre, armador_template)
-			@contacto_cuerpo_mail[item.get_mail] = plantilla_completa
+			plantilla_completa = preparar_datos_para_template(item.nombre, armador_template)
+			@contacto_cuerpo_mail[item.mail] = plantilla_completa
 		end
 	end
 
