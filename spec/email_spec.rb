@@ -92,4 +92,18 @@ describe 'EMail' do
     expect(resultado).to include(resultado_esperado)
   end
 
+  it 'deberia reemplazar etiqueta date:i por la hora actual' do
+    formato_de_fecha = "%Y-%m-%d"
+    fecha_actual = Time.now.strftime(formato_de_fecha)
+    
+    resultado_esperado = "date " + fecha_actual.to_s
+    
+    @contacto_con_etiquetas
+    datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
+    @email = EMail.new(datos)
+    @email.cargar_cuerpo_a_contacto
+    resultado = @email.contacto_cuerpo_mail.to_s
+    expect(resultado).to include(resultado_esperado)
+  end
+
 end
