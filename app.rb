@@ -1,17 +1,7 @@
 require 'sinatra'
-require 'erb'
 require 'json'
-require_relative './model/parseador_json'
 require_relative './model/manejador_de_mail'
-
-#curl -X POST -H "Content-Type: application/json" --data @json_contactos_datos.json localhost:4567/
-
-post '/envio_mail_test' do
-  parseador_json = ParseadorJson.new
-  parseador_json.parsear(request.body.read)
-  datos_del_mail = parseador_json.get_dato
-  status 200
-end
+require_relative './model/manejador_de_email'
 
 post '/' do
   manejador = ManejadorDeMail.new(request.body.read)
@@ -22,4 +12,22 @@ post '/' do
     status 200
     respuesta.to_json
   end
+end
+
+post '/nuevo' do
+  begin
+    enviar_mail
+    status 200
+    {"resultado": "ok"}.to_json
+  rescue
+    status 500
+    {"resultado": "error, entrada incorrecta"}.to_json
+  end
+end
+
+private
+def enviar_mail
+    manejador_de_email = ManejadorDeEMail.new
+    manejador_de_email.armar_email(request.body.read)
+    manejador_de_email.enviar
 end

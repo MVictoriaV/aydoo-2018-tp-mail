@@ -16,24 +16,23 @@ describe 'ManejadorDeEMail' do
 
   it 'recibe json comienza a armar un email con remitente y asunto' do
     punto_de_entrada = File.read("./archivos_de_prueba/datos_prueba1.json")
-  	un_email = @manejador_de_mail.armar_email(punto_de_entrada)
+  	@manejador_de_mail.armar_email(punto_de_entrada)
  		
     remitente_esperado = "universidad@untref.com"
  		asunto_esperado = "Invitación a fiesta de fin de año"
 
- 		expect(un_email.remitente).to eq remitente_esperado
- 		expect(un_email.asunto).to eq asunto_esperado
+ 		expect(@manejador_de_mail.email.remitente).to eq remitente_esperado
+ 		expect(@manejador_de_mail.email.asunto).to eq asunto_esperado
   end
 
   it 'deberia retornar nil cuando recibe json incorrecto' do
     punto_de_entrada = File.read("./archivos_de_prueba/data2_esquema_incorrecto.json")
-    respuesta = @manejador_de_mail.armar_email(punto_de_entrada)
     
-    expect(respuesta).to be_falsey
+    expect{@manejador_de_mail.armar_email(punto_de_entrada)}.to raise_exception(EtiquetaInexistenteException)
   end
 
-  it 'recibe un email que no es nil' do
+  skip 'recibe un email que no es nil' do
     	resultado = @manejador_de_mail.enviar(@email)
       expect(resultado).to be_truthy
-    end
+  end
 end

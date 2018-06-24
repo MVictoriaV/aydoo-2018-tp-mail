@@ -11,6 +11,7 @@ class EnviadorDeMail
 	    @mail_destino = nil
 	    @asunto = nil
 	    @mail_origen = nil
+	    configurar_mail
   	end
 
   	def configurar_mail
@@ -54,6 +55,20 @@ class EnviadorDeMail
 		end
 		return true
 
+	end
+
+	def enviar_mail__(email)
+		unless el_puerto_esta_levantado?('127.0.0.1', 1080)
+			raise ServicioDeMailException.new
+		end
+		email.contacto_cuerpo_mail.each do |contacto, cuerpo|
+			Mail.deliver do
+			       to email.remitente
+			     from contacto
+			  subject email.asunto
+			     body cuerpo
+			end
+		end
 	end
 
 	def el_puerto_esta_levantado?(ip, puerto)
