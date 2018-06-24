@@ -10,6 +10,7 @@ describe 'EMail' do
   before(:each) do
       punto_de_entrada = File.read("./archivos_de_prueba/datos_prueba1.json")
       @contacto_con_etiquetas = File.read("./archivos_de_prueba/json_contacto_etiquetas_especiales.json")
+      @contactos_con_etiquetas = File.read("./archivos_de_prueba/json_contactos_datos.json")
       datos = OpenStruct.new(JSON.parse(punto_de_entrada))
       @email = EMail.new(datos)
   end
@@ -104,6 +105,14 @@ describe 'EMail' do
     @email.cargar_cuerpo_a_contacto
     resultado = @email.contacto_cuerpo_mail.to_s
     expect(resultado).to include(resultado_esperado)
+  end
+
+  it 'deberia tener 5 contactos ya que a un contacto se encuentra incompleto' do
+    @contacto_con_etiquetas
+    datos = OpenStruct.new(JSON.parse(@contactos_con_etiquetas))
+    @email = EMail.new(datos)
+    @email.cargar_cuerpo_a_contacto
+    expect(@email.contacto_cuerpo_mail.size()).to eq 5
   end
 
 end
