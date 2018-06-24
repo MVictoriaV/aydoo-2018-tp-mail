@@ -4,6 +4,11 @@ require_relative '../model/email'
 require_relative '../model/punto_entrada_nulo_exception'
 require_relative '../model/remitente_exception'
 require_relative '../model/asunto_inexistente_exception'
+require_relative '../constantes/constantes_datos'
+require_relative '../modules/formateador_fecha'
+
+include Constantes
+include FormateadorFecha
 
 describe 'EMail' do
 
@@ -81,8 +86,7 @@ describe 'EMail' do
   end
 
   it 'deberia reemplazar etiqueta time:12 por la hora actual' do
-    formato_de_fecha = "%H:%M"
-    fecha_actual = Time.now.strftime(formato_de_fecha)
+    fecha_actual = aplicar_formato(Constantes::FORMATO_HORA_12)
     resultado_esperado = "time " + fecha_actual.to_s
     
     @contacto_con_etiquetas
