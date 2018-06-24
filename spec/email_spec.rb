@@ -98,8 +98,7 @@ describe 'EMail' do
   end
 
   it 'deberia reemplazar etiqueta date:i por la hora actual' do
-    formato_de_fecha = "%Y-%m-%d"
-    fecha_actual = Time.now.strftime(formato_de_fecha)
+    fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_FECHA_INVERTIDA)
     
     resultado_esperado = "date " + fecha_actual.to_s
     

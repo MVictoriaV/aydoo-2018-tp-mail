@@ -11,10 +11,7 @@ describe 'ArmadorDeTemplate' do
     un_armador = ArmadorDeTemplate.new
 
     it 'deberia reemplazar la totalidad de las etiquetas' do
-    	formato_de_fecha = "%Y-%m-%d"
-        fecha_actual = Time.now.strftime(formato_de_fecha)
-
-        formato_de_fecha = "%H:%M"
+        fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_FECHA_INVERTIDA)
         hora_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_12)
 
         template = %{<date:i>  <empty(uruguay,argentina)> <sum(4,3)> <time:12>}
@@ -27,9 +24,7 @@ describe 'ArmadorDeTemplate' do
 
     it 'deberia reemplazar solamente 4 etiquetas ya que existe una etiqueta no soportada' do
 
-        formato_de_fecha = "%H:%M"
-        hora_actual = Time.now.strftime(formato_de_fecha)
-        hora_actual = Time.now.strftime("%R")
+        hora_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_24)
 
         template = %{Hola <nombre> <date:r>  <empty(uruguay,argentina)> <sum(4,3)> <time>}
         un_armador.armar(template)
