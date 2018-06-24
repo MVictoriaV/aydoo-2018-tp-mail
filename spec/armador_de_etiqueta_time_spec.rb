@@ -36,10 +36,10 @@ class ArmadorDeEtiquetaTimeSpec
             template = %{<time:24> y <time> }
             fecha_actual = Time.now.strftime("%R")
             un_armador = ArmadorDeEtiquetaTime.new()
-            expect{un_armador.comprobar_etiqueta(template)}.to raise_exception(EtiquetaTimeNoSoportadaException)
+            expect{un_armador.comprobar_etiqueta(template)}.to raise_exception(EtiquetaNoSoportadaException)
         end
 
-        it 'deberia lanzar excepcion de etiqueta time no soportada' do
+        it 'deberia realizar un solo reemplazo ya que una etiqueta time no es soportada' do
             template = %{<time:24> y <time> }
             fecha_actual = Time.now.strftime("%R")
             un_armador = ArmadorDeEtiquetaTime.new()

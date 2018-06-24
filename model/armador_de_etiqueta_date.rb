@@ -1,6 +1,13 @@
+require_relative 'etiqueta_no_soportada_exception'
+
 class ArmadorDeEtiquetaDate
 
 	def armar(plantilla) 
+		begin
+			comprobar_etiqueta(plantilla)
+		rescue Exception => msg
+	        puts msg.message
+	    end
 		expresion = /[<]+([date]+[:]+[d|i])+[>]/
 		una_etiqueta = plantilla.match(expresion)
 		if una_etiqueta != nil
@@ -18,5 +25,13 @@ class ArmadorDeEtiquetaDate
 			formato_de_fecha = "%d-%m-%Y"
 		end
 		fecha_actual = Time.now.strftime(formato_de_fecha)
+	end
+
+	def comprobar_etiqueta(plantilla)
+		expresion = /<date+:(?!d|i).+[>]/
+		una_etiqueta = plantilla.match(expresion)
+		if una_etiqueta != nil
+      		raise EtiquetaNoSoportadaException.new('Etiqueta date sin comportamiento definido, no se realiza reemplazo sobre la misma.')
+    	end
 	end
 end

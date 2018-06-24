@@ -1,4 +1,4 @@
-require_relative 'etiqueta_time_no_soportada_exception'
+require_relative 'etiqueta_no_soportada_exception'
 
 class ArmadorDeEtiquetaTime
 
@@ -31,7 +31,7 @@ class ArmadorDeEtiquetaTime
 		expresion = /<time+:(?!12).+[>]/
 		una_etiqueta = plantilla.match(expresion)
 		if una_etiqueta != nil
-      		raise EtiquetaTimeNoSoportadaException.new
+      		raise EtiquetaNoSoportadaException.new('Etiqueta time sin comportamiento definido, no se realiza reemplazo sobre la misma.')
     	end
 	end
 end
