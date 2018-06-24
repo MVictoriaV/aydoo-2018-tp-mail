@@ -70,4 +70,13 @@ describe 'EMail' do
     expect(resultado).to include('empty uruguay')
   end
 
+  it 'deberia reemplazar etiqueta sum por la suma de 4 y 3' do
+    @contacto_con_etiquetas
+    datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
+    @email = EMail.new(datos)
+    @email.cargar_cuerpo_a_contacto
+    resultado = @email.contacto_cuerpo_mail.to_s
+    expect(resultado).to include('sum 7')
+  end
+
 end
