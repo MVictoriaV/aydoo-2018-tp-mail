@@ -1,6 +1,11 @@
 require_relative 'etiqueta_no_soportada_exception'
+require_relative '../constantes/constantes_de_fecha'
+require_relative '../modules/formateador_fecha'
 
 class ArmadorDeEtiquetaDate
+
+	include ConstantesDeFecha
+	include FormateadorFecha
 
 	def armar(plantilla) 
 		begin
@@ -11,20 +16,18 @@ class ArmadorDeEtiquetaDate
 		expresion = /[<]+([date]+[:]+[d|i])+[>]/
 		una_etiqueta = plantilla.match(expresion)
 		if una_etiqueta != nil
-			un_formato = formato_hora(una_etiqueta.to_s)
+			un_formato = dar_formato_fecha(una_etiqueta.to_s)
 			plantilla = plantilla.gsub!(expresion) {|etiqueta| etiqueta.gsub(expresion, un_formato)}
 		end
 		plantilla
 	end
 
-	def formato_hora(una_etiqueta)
-		formato_de_fecha = nil
+	def dar_formato_fecha(una_etiqueta)
+		formato_de_fecha = ConstantesDeFecha::FORMATO_FECHA
 		if una_etiqueta[una_etiqueta.length - 2, 1] == 'i'
-			formato_de_fecha = "%Y-%m-%d"
-		else
-			formato_de_fecha = "%d-%m-%Y"
+			formato_de_fecha = ConstantesDeFecha::FORMATO_FECHA_INVERTIDA
 		end
-		fecha_actual = Time.now.strftime(formato_de_fecha)
+		fecha_actual = aplicar_formato(formato_de_fecha)
 	end
 
 	def comprobar_etiqueta(plantilla)

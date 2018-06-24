@@ -1,14 +1,14 @@
 require 'rspec'
 require_relative '../model/armador_de_etiqueta_time_12'
-require_relative '../constantes/constantes_datos'
+require_relative '../constantes/constantes_de_fecha'
 require_relative '../modules/formateador_fecha'
 
-include Constantes
+include ConstantesDeFecha
 include FormateadorFecha
 
 describe 'ArmadorDeEtiquetaTime12' do
 
-    fecha_actual = aplicar_formato(Constantes::FORMATO_HORA_12)
+    fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_12)
 
     it 'deberia obtener la fecha en el formato DD-MM-YYYY' do
         template = %{<time:12>}
