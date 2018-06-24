@@ -18,11 +18,11 @@ describe 'EMail' do
     expect(@email.asunto).to be
   end
 
-  it 'se crea email con argumento nil deberia lanzar excepcion' do
+  it 'deberia lanzar excepcion cuando se crea email con argumento nil' do
     expect{EMail.new(nil)}.to raise_exception(PuntoEntradaNuloException)
   end
 
-  it 'no se pasa remitente deberia lanzar excepcion' do
+  it 'deberia lanzar excepcion cuando no se pasa el remitente' do
 
     dato_sin_remitente = File.read("./archivos_de_prueba/datos_sin_remitente.json")
     datos_grales = OpenStruct.new(JSON.parse(dato_sin_remitente))
@@ -30,7 +30,7 @@ describe 'EMail' do
     expect{EMail.new(datos_grales)}.to raise_exception(RemitenteException)
   end
 
-  it 'no se pasa asunto deberia lanzar excepcion' do
+  it 'deberia lanzar excepcion cuando no se pasa el asunto' do
 
     dato_sin_asunto = File.read("./archivos_de_prueba/datos_sin_asunto.json")
     datos_grales = OpenStruct.new(JSON.parse(dato_sin_asunto))
