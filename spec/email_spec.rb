@@ -68,28 +68,30 @@ describe 'EMail' do
   end
 
   it 'deberia reemplazar etiqueta empty por uruguay' do
-    @contacto_con_etiquetas
+
     datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
     @email = EMail.new(datos)
     @email.cargar_cuerpo_a_contacto
     resultado = @email.contacto_cuerpo_mail.to_s
-    expect(resultado).to include('empty uruguay')
+
+    expect(resultado).to include('uruguay')
   end
 
   it 'deberia reemplazar etiqueta sum por la suma de 4 y 3' do
-    @contacto_con_etiquetas
+
     datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
     @email = EMail.new(datos)
     @email.cargar_cuerpo_a_contacto
     resultado = @email.contacto_cuerpo_mail.to_s
+
     expect(resultado).to include('sum 7')
   end
 
   it 'deberia reemplazar etiqueta time:12 por la hora actual' do
+
     fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_12)
     resultado_esperado = "time " + fecha_actual.to_s
     
-    @contacto_con_etiquetas
     datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
     @email = EMail.new(datos)
     @email.cargar_cuerpo_a_contacto
@@ -102,7 +104,6 @@ describe 'EMail' do
     
     resultado_esperado = "date " + fecha_actual.to_s
     
-    @contacto_con_etiquetas
     datos = OpenStruct.new(JSON.parse(@contacto_con_etiquetas))
     @email = EMail.new(datos)
     @email.cargar_cuerpo_a_contacto
@@ -111,7 +112,7 @@ describe 'EMail' do
   end
 
   it 'deberia tener 5 contactos ya que a un contacto se encuentra incompleto' do
-    @contacto_con_etiquetas
+
     datos = OpenStruct.new(JSON.parse(@contactos_con_etiquetas))
     @email = EMail.new(datos)
     @email.cargar_cuerpo_a_contacto

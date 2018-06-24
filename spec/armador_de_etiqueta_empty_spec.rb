@@ -6,7 +6,7 @@ class ArmadorDeEtiquetaEmptySpec
     describe 'ArmadorDeEtiquetaEmpty' do
 
         it 'deberia obtener el primer argumento de la funcion empty' do
-            template = %{<empty(uruguay,argentina)>}
+            template = %{<empty( uruguay  ,argentina)>}
             un_armador = ArmadorDeEtiquetaEmpty.new()
             resultado = un_armador.armar(template)
             expect(resultado).to include('uruguay')

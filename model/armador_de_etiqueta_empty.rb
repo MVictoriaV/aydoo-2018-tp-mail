@@ -5,11 +5,13 @@ require_relative 'etiqueta_empty_con_segundo_argumento_nulo_exception.rb'
 class ArmadorDeEtiquetaEmpty
 
 	def armar(plantilla) 
-		expresion_etiqueta = /[<]+([empty(]+[a-z]+,+[a-z]+[)])+[>]/
+		expresion_etiqueta = /[<][empty]+[(].+[a-z].+,.+[a-z]+.[)]+[>]/
 		una_etiqueta = plantilla.match(expresion_etiqueta)
 		primer_argumento = nil
 		segundo_argumento = nil
 		if una_etiqueta != nil
+			una_etiqueta
+			una_etiqueta = una_etiqueta.to_s.gsub(/\s/, "")
 			expresion = /[a-z]+,/
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
@@ -19,6 +21,7 @@ class ArmadorDeEtiquetaEmpty
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			segundo_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
+
 			begin
 				plantilla = plantilla.gsub(expresion_etiqueta, empty(primer_argumento, segundo_argumento))
 			rescue Exception => msg
