@@ -19,7 +19,12 @@ class ManejadorDeEMail
   end
 
   def enviar
-    enviador = EnviadorDeMail.new
-    enviador.enviar_mail__(@email)
+    begin
+      enviador = EnviadorDeMail.new
+      enviador.enviar_mail__(@email)
+    rescue Exception => e
+      puts e
+      raise e
+    end
   end
 end
