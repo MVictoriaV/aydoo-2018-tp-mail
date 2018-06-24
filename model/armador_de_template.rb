@@ -1,4 +1,5 @@
 require_relative 'armador_de_etiqueta_time'
+require_relative 'armador_de_etiqueta_time_12'
 require_relative 'armador_de_etiqueta_sum'
 require_relative 'armador_de_etiqueta_empty'
 require_relative 'armador_de_etiqueta_date'
@@ -12,6 +13,7 @@ class ArmadorDeTemplate
     def initialize
         @armadores = [  ArmadorDeEtiquetaDate.new,
                         ArmadorDeEtiquetaTime.new,
+                        ArmadorDeEtiquetaTime12.new,
                         ArmadorDeEtiquetaEmpty.new,
                         ArmadorDeEtiquetaSum.new,
                         ArmadorDePlantilla.new]

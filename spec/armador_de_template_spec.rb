@@ -1,5 +1,10 @@
-require_relative '../model/armador_de_template'
 require 'rspec'
+require_relative '../model/armador_de_template'
+require_relative '../constantes/constantes_datos'
+require_relative '../modules/formateador_fecha'
+
+include Constantes
+include FormateadorFecha
 
 describe 'ArmadorDeTemplate' do
 
@@ -10,7 +15,7 @@ describe 'ArmadorDeTemplate' do
         fecha_actual = Time.now.strftime(formato_de_fecha)
 
         formato_de_fecha = "%H:%M"
-        hora_actual = Time.now.strftime(formato_de_fecha)
+        hora_actual = aplicar_formato(Constantes::FORMATO_HORA_12)
 
         template = %{<date:i>  <empty(uruguay,argentina)> <sum(4,3)> <time:12>}
 
