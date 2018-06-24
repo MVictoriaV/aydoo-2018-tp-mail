@@ -23,7 +23,7 @@ class ManejadorDeEMail
   def enviar
     begin
       enviador = EnviadorDeMail.new
-      enviador.enviar_mail__(@email)
+      enviador.enviar_mail(@email)
     rescue Exception => e
       puts e
       raise e
