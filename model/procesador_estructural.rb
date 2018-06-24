@@ -17,7 +17,7 @@ class ProcesadorEstructural
 		etiquetas_requeridas = Constantes::ETIQUETAS_REQUERIDAS
 		etiquetas_requeridas.each {| clave | 
 			if @estructura[clave].nil?
-				raise EtiquetaInexistenteException.new
+				raise EtiquetaInexistenteException.new('Falta la etiqueta requerida ' + clave.to_s)
 			end
 		}
 	end

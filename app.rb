@@ -19,13 +19,12 @@ post '/nuevo' do
     enviar_mail
     status 200
     {"resultado": "ok"}.to_json
-  rescue
+  rescue Exception => e
     status 500
     {"resultado": "error, entrada incorrecta"}.to_json
   end
 end
 
-private
 def enviar_mail
     manejador_de_email = ManejadorDeEMail.new
     manejador_de_email.armar_email(request.body.read)
