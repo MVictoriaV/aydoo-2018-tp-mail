@@ -1,6 +1,13 @@
+require_relative 'etiqueta_no_soportada_exception'
+
 class ArmadorDeEtiquetaSum
 
 	def armar(plantilla) 
+		begin
+			comprobar_etiqueta(plantilla)
+		rescue Exception => msg
+	        puts msg.message
+	    end
 		expresion_etiqueta = /[<]+([sum(]+\d+,+\d+[)])+[>]/
 		una_etiqueta = plantilla.match(expresion_etiqueta)
 		primer_argumento = nil
@@ -25,5 +32,13 @@ class ArmadorDeEtiquetaSum
 	def sum(primer_argumento, segundo_argumento)
 		suma = primer_argumento + segundo_argumento
 		return suma.to_s
+	end
+
+	def comprobar_etiqueta(plantilla)
+		expresion = /<sum+((?!\d).+,+(?!\d).+)[>]|<sum+((?!\d).(?!\d).+)[>]/
+		una_etiqueta = plantilla.match(expresion)
+		if una_etiqueta != nil
+      		raise EtiquetaNoSoportadaException.new('Etiqueta sum sin comportamiento definido, no se realiza reemplazo sobre la misma.')
+    	end
 	end
 end
