@@ -1,20 +1,8 @@
 require 'sinatra'
 require 'json'
-require_relative './model/manejador_de_mail'
 require_relative './model/manejador_de_email'
 
 post '/' do
-  manejador = ManejadorDeMail.new(request.body.read)
-  respuesta = manejador.enviar
-  if respuesta.nil?
-    status 500
-  else
-    status 200
-    respuesta.to_json
-  end
-end
-
-post '/nuevo' do
   begin
     enviar_mail
     status 200
