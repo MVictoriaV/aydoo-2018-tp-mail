@@ -22,19 +22,19 @@ class ArmadorDeEtiquetaEmptySpec
         it 'deberia lanzar excepcion ya que ambos argumentos de la etiqueta empty son nulos' do
             template = %{<empty(nil,nil)>}
             un_armador = ArmadorDeEtiquetaEmpty.new()
-            expect{un_armador.armar(template)}.to raise_exception(EtiquetaEmptyConReemplazosNulosException)
+            expect{un_armador.empty('nil','nil')}.to raise_exception(EtiquetaEmptyConReemplazosNulosException)
         end
 
         it 'deberia lanzar excepcion ya que el primer argumento de la etiqueta empty es nulo' do
             template = %{<empty(nil,argentina)>}
             un_armador = ArmadorDeEtiquetaEmpty.new()
-            expect{un_armador.armar(template)}.to raise_exception(EtiquetaEmptyConPrimerArgumentoNuloException)
+            expect{un_armador.empty('nil','argentina')}.to raise_exception(EtiquetaEmptyConPrimerArgumentoNuloException)
         end
 
         it 'deberia lanzar excepcion ya que el segundo argumento de la etiqueta empty es nulo' do
             template = %{<empty(uruguay,nil)>}
             un_armador = ArmadorDeEtiquetaEmpty.new()
-            expect{un_armador.armar(template)}.to raise_exception(EtiquetaEmptyConSegundoArgumentoNuloException)
+            expect{un_armador.empty('uruguay','nil')}.to raise_exception(EtiquetaEmptyConSegundoArgumentoNuloException)
         end
 
     end

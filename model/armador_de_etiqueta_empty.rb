@@ -19,7 +19,11 @@ class ArmadorDeEtiquetaEmpty
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			segundo_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
-			plantilla = plantilla.gsub(expresion_etiqueta, empty(primer_argumento, segundo_argumento))
+			begin
+				plantilla = plantilla.gsub(expresion_etiqueta, empty(primer_argumento, segundo_argumento))
+			rescue Exception => msg
+		        puts msg.message
+		    end
 		end
 		plantilla
 	end
