@@ -1,11 +1,14 @@
 require_relative 'etiqueta_empty_con_reemplazos_nulos_exception'
 require_relative 'etiqueta_empty_con_primer_argumento_nulo_exception.rb'
 require_relative 'etiqueta_empty_con_segundo_argumento_nulo_exception.rb'
+require_relative '../constantes/constantes_de_expresiones_regulares'
 
 class ArmadorDeEtiquetaEmpty
 
+	include ConstantesDeExpresionesRegulares
+
 	def armar(plantilla) 
-		expresion_etiqueta = /[<][empty]+[(].+[a-z].+,.+[a-z]+.[)]+[>]/
+		expresion_etiqueta = ConstantesDeExpresionesRegulares::ETIQUETA_EMPTY
 		una_etiqueta = plantilla.match(expresion_etiqueta)
 		primer_argumento = nil
 		segundo_argumento = nil
