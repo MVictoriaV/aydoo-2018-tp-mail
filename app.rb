@@ -9,7 +9,7 @@ post '/' do
     {"resultado": "ok"}.to_json
   rescue ServicioDeMailException => e
     status 503
-    {"resultado": "el servidor no se encuentra disponible"}.to_json
+    {"resultado": "el servicio SMTP no se encuentra disponible"}.to_json
   rescue Exception => e
     status 500
     {"resultado": "error, entrada incorrecta"}.to_json
