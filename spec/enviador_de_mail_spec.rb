@@ -12,6 +12,14 @@ describe 'EnviadorDeMail' do
         expect{enviador_de_mail.enviar_mail(@email)}.to raise_exception(ServicioDeMailException)
     end
 
+    it 'no deberia estar levantado el servicio SMTP' do
+        enviador_de_mail = EnviadorDeMail.new
+        ip = '127.0.0.1'
+        puerto = 1080
+        
+        expect(enviador_de_mail.el_puerto_esta_levantado?(ip, puerto)).to be_falsy
+    end
+
     it 'deberia estar levantado el servicio SMTP' do
         enviador_de_mail = EnviadorDeMail.new
         ip = '127.0.0.1'
@@ -27,5 +35,10 @@ describe 'EnviadorDeMail' do
         allow(enviador_de_mail).to receive(:enviar_mail).with(mock_email).and_return(true)
         
         expect(enviador_de_mail.enviar_mail(mock_email)).to be_truthy
+    end
+
+    it 'deberia poder configurar el mail delivery' do
+        enviador_de_mail = EnviadorDeMail.new
+        expect(enviador_de_mail.configurar_mail).to be_truthy
     end
 end
