@@ -1,6 +1,9 @@
 require_relative 'etiqueta_no_soportada_exception'
+require_relative '../constantes/constantes_de_expresiones_regulares'
 
 class ArmadorDeEtiquetaSum
+
+	include ConstantesDeExpresionesRegulares
 
 	def armar(plantilla) 
 		begin
@@ -8,7 +11,7 @@ class ArmadorDeEtiquetaSum
 		rescue Exception => msg
 	        puts msg.message
 	    end
-		expresion_etiqueta = /[<]+([sum(]+\d+,+\d+[)])+[>]/
+		expresion_etiqueta = ConstantesDeExpresionesRegulares::ETIQUETA_SUM
 		una_etiqueta = plantilla.match(expresion_etiqueta)
 		primer_argumento = nil
 		segundo_argumento = nil
