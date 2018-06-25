@@ -15,12 +15,12 @@ class ArmadorDeEtiquetaEmpty
 		if una_etiqueta != nil
 			una_etiqueta
 			una_etiqueta = una_etiqueta.to_s.gsub(/\s/, "")
-			expresion = /[a-z]+,/
+			expresion = ConstantesDeExpresionesRegulares::ETIQUETA_EMPTY_PRIMER_ARGUMENTO
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			primer_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
 
-			expresion = /([a-z])+[)]/
+			expresion = ConstantesDeExpresionesRegulares::ETIQUETA_EMPTY_SEGUNDO_ARGUMENTO
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			segundo_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
