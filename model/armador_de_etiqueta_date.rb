@@ -1,9 +1,11 @@
 require_relative 'etiqueta_no_soportada_exception'
+require_relative '../constantes/constantes_de_expresiones_regulares'
 require_relative '../constantes/constantes_de_fecha'
 require_relative '../modules/formateador_fecha'
 
 class ArmadorDeEtiquetaDate
 
+	include ConstantesDeExpresionesRegulares
 	include ConstantesDeFecha
 	include FormateadorFecha
 
@@ -13,7 +15,7 @@ class ArmadorDeEtiquetaDate
 		rescue Exception => msg
 	        puts msg.message
 	    end
-		expresion = /[<]+([date]+[:]+[d|i])+[>]/
+		expresion = ConstantesDeExpresionesRegulares::ETIQUETA_DATE
 		una_etiqueta = plantilla.match(expresion)
 		if una_etiqueta != nil
 			un_formato = dar_formato_fecha(una_etiqueta.to_s)
