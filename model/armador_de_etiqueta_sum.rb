@@ -16,13 +16,13 @@ class ArmadorDeEtiquetaSum
 		primer_argumento = nil
 		segundo_argumento = nil
 		if una_etiqueta != nil
-			expresion = /\d+,/
+			expresion = ConstantesDeExpresionesRegulares::ETIQUETA_SUM_PRIMER_ARGUMENTO
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			primer_argumento = un_resultado.to_s[0,un_resultado.to_s.length - 1]
 			primer_argumento = primer_argumento.to_i
 
-			expresion = /,+\d/
+			expresion = ConstantesDeExpresionesRegulares::ETIQUETA_SUM_SEGUNDO_ARGUMENTO
 			cadena = una_etiqueta.to_s
 			un_resultado = cadena.match(expresion)
 			segundo_argumento = un_resultado.to_s[1,un_resultado.to_s.length]
