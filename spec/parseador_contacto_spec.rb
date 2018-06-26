@@ -63,4 +63,25 @@ describe 'ParseadorContacto' do
         expect(parseador.contactos.size).to eq 1
     end
 
+    it 'deberia lanzar excepcion de contacto incompleto ya que falta el nombre del unico contacto contacto' do
+        parseador = ParseadorContacto.new
+        un_contacto_de_entrada = [
+            {"nombre"=>"", "apellido"=>"raikkonen", "mail"=>"kimi.raikkonen@unmail.com"}]
+        expect{parseador.parsear(un_contacto_de_entrada)}.to raise_exception(ContactoException)
+    end
+
+    it 'deberia lanzar excepcion de contacto incompleto ya que falta el apellido del unico contacto contacto' do
+        parseador = ParseadorContacto.new
+        un_contacto_de_entrada = [
+            {"nombre"=>"kimi", "apellido"=>"", "mail"=>"kimi.raikkonen@unmail.com"}]
+        expect{parseador.parsear(un_contacto_de_entrada)}.to raise_exception(ContactoException)
+    end
+
+    it 'deberia lanzar excepcion de contacto incompleto ya que falta el mail del unico contacto contacto' do
+        parseador = ParseadorContacto.new
+        un_contacto_de_entrada = [
+            {"nombre"=>"kimi", "apellido"=>"raikkonen", "mail"=>""}]
+        expect{parseador.parsear(un_contacto_de_entrada)}.to raise_exception(ContactoException)
+    end
+
 end

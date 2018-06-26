@@ -15,6 +15,9 @@ class ParseadorContacto
               crear_contacto(item["nombre"], item["apellido"], item["mail"])
           rescue Exception => msg
               puts msg.message
+              if un_hash_de_contactos.size() <= 1
+                raise msg
+              end
           end
       end
   end
