@@ -9,7 +9,7 @@ describe 'Aplicacion Sinatra' do
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+      Sinatra::Application
   end
 
   parametro_json = File.read("./archivos_de_prueba/datos_prueba1.json")
