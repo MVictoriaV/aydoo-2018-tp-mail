@@ -8,4 +8,7 @@ module ConstantesDeExpresionesRegulares
 	ETIQUETA_SUM_PRIMER_ARGUMENTO = /\d+,/
 	ETIQUETA_SUM_SEGUNDO_ARGUMENTO = /,+\d/
 	ETIQUETA_TIME = /[<]+([time])+[>]/
+	ETIQUETA_TIME_12 = /[<]+([time]+[:]+12)+[>]/
+	ETIQUETA_TIME_12_EXCEPTION = /<time+:(?!12).+[>]/
+
 end

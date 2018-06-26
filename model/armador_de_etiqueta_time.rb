@@ -1,5 +1,5 @@
-require_relative '../constantes/constantes_de_fecha'
 require_relative '../modules/formateador_fecha'
+require_relative '../constantes/constantes_de_fecha'
 require_relative '../constantes/constantes_de_expresiones_regulares'
 
 class ArmadorDeEtiquetaTime
