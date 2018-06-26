@@ -119,4 +119,12 @@ describe 'EMail' do
       expect(@email.contacto_cuerpo_mail.size()).to eq 5
   end
 
+  it 'deberia lanzar excepcion contacto incompleto' do
+
+      contacto_sin_nombre = File.read("./archivos_de_prueba/json_contacto_incompleto.json")
+      datos_grales = OpenStruct.new(JSON.parse(contacto_sin_nombre))
+
+      expect{EMail.new(datos_grales)}.to raise_exception(ContactoException)
+  end
+
 end
