@@ -7,4 +7,5 @@ module ConstantesDeExpresionesRegulares
 	ETIQUETA_SUM = /[<]+([sum(]+\d+,+\d+[)])+[>]/
 	ETIQUETA_SUM_PRIMER_ARGUMENTO = /\d+,/
 	ETIQUETA_SUM_SEGUNDO_ARGUMENTO = /,+\d/
+	ETIQUETA_TIME = /[<]+([time])+[>]/
 end
