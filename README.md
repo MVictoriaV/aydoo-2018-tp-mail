@@ -1,6 +1,6 @@
 # [TP1] [Ruby] MailMerger
 ## AYDOO 2018, UNTREF
-
+Ajustes
 
  [![Build Status](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail.svg?branch=master)](https://travis-ci.org/MVictoriaV/aydoo-2018-tp-mail)
 

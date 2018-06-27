@@ -1,0 +1,17 @@
+{
+    "template":"Hola <nombre>, evento <nombre_evento>, lugar <lugar_evento>, el día <fecha_del_evento>. confirmar <mail_de_confirmacion>. date <date:i> empty <empty(uruguay,argentina)> sum <sum(4,3)> time <time:12>",
+	"contactos":[
+		{
+			"nombre": "",
+			"apellido": "raikkonen",
+			"mail": "kimi.raikkonen@unmail.com"}
+		],
+    "datos":{
+       "remitente": "universidad@untref.com",
+       "asunto":"Invitación a fiesta de fin de año",
+       "nombre_evento":"la cena de fin de año de la UNTREF",
+       "lugar_evento":"el Centro de estudios (avenida Directorio 887, Caseros)",
+       "fecha_del_evento":"5 de diciembre",
+       "mail_de_confirmacion":"fiesta@untref.com"
+    }
+ }

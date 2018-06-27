@@ -1,36 +1,32 @@
 require 'rspec'
 require_relative '../model/armador_de_etiqueta_time'
+require_relative '../constantes/constantes_de_fecha'
+require_relative '../modules/formateador_fecha'
 
-class ArmadorDeEtiquetaTimeSpec
+include ConstantesDeFecha
+include FormateadorFecha
 
-    describe 'ArmadorDeEtiquetaTime' do
+describe 'ArmadorDeEtiquetaTime' do
 
-        it 'deberia obtener la fecha en el formato 24' do
-        	formato_de_fecha = "%H:%M"
-          fecha_actual = Time.now.strftime(formato_de_fecha)
-          template = %{<time:24>}
-          un_armador = ArmadorDeEtiquetaTime.new()
-          
-          resultado = un_armador.armar(template)
-          resultado_esperado = fecha_actual.to_s
-          expect(resultado).to include(resultado_esperado)
-        end
+    it 'deberia obtener la fecha en el formato 24' do
+      	fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_24)
 
-        it 'deberia obtener la fecha en el formato DD-MM-YYYY' do
-          fecha_actual = Time.now.strftime("%R")
-          template = %{<time>}
-          un_armador = ArmadorDeEtiquetaTime.new()
-          
-          resultado = un_armador.armar(template)
-          resultado_esperado = fecha_actual.to_s
-          expect(resultado).to include(resultado_esperado)
-        end
+        template = %{<time>}
+        un_armador = ArmadorDeEtiquetaTime.new()
+        
+        resultado = un_armador.armar(template)
+        resultado_esperado = fecha_actual.to_s
+        expect(resultado).to include(resultado_esperado)
+    end
 
-        it 'deberia retornar el template original por etiqueta no soportada' do
-          template = %{<time:r>}
-          un_armador = ArmadorDeEtiquetaTime.new()
-          resultado = un_armador.armar(template)
-          expect(resultado).to include(template)
-        end
+    it 'deberia realizar ambos reemplazos de la etiqueta time' do
+      	fecha_actual = aplicar_formato(ConstantesDeFecha::FORMATO_HORA_24)
+
+        template = %{la hora es <time> y la hora es igual a <time>}
+        un_armador = ArmadorDeEtiquetaTime.new()
+        
+        resultado = un_armador.armar(template)
+        resultado_esperado = "la hora es " + fecha_actual.to_s + " y la hora es igual a " + fecha_actual.to_s
+        expect(resultado).to include(resultado_esperado)
     end
 end

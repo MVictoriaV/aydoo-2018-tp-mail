@@ -1,36 +1,32 @@
 require 'rspec'
 require_relative '../model/armador_de_plantilla'
 
-class ArmadorDePlantillaSpec
+describe 'ArmadorDePlantilla' do
 
-    describe 'ArmadorDePlantilla' do
+    it 'deberia poder formatear etiqueta' do
+        template = "Hola <nombre>"
+        template_final = "Hola <%=nombre%>"
+        un_armador = ArmadorDePlantilla.new()
 
-        it 'deberia poder reemplazar todas las etiquetas' do
-        	formato_de_fecha = "%Y-%m-%d"
-          	fecha_actual = Time.now.strftime(formato_de_fecha)
+        resultado = un_armador.armar(template)
+        expect(resultado).to include(template_final)
+    end
 
-          	formato_de_fecha = "%H:%M"
-          	hora_actual = Time.now.strftime(formato_de_fecha)
+    it 'deberia poder formatear ambas etiquetas' do
+    	template = "Hola <nombre> te estamos invitando a <nombre_evento>"
+        template_final = "Hola <%=nombre%> te estamos invitando a <%=nombre_evento%>"
+        un_armador = ArmadorDePlantilla.new()
 
-			template = %{<date:i>  <empty(uruguay,argentina)> <sum(4,3)> <time:24>}
-			un_armador = ArmadorDePlantilla.new()
+        resultado = un_armador.armar(template)
+        expect(resultado).to include(template_final)
+    end
 
-			resultado = un_armador.armar(template)
-			resultado_esperado = fecha_actual.to_s + "  uruguay 7 " + hora_actual.to_s
-			expect(resultado).to include(resultado_esperado)
-        end
+    it 'deberia poder formatear solamente etiquetas simples' do
+    	template = "Hola <nombre> te estamos invitando a <nombre_evento> <empty(uruguay,argentina)>"
+        template_final = "Hola <%=nombre%> te estamos invitando a <%=nombre_evento%> <empty(uruguay,argentina)>"
+        un_armador = ArmadorDePlantilla.new()
 
-        it 'deber3ia reemplazar solamente 3 etiquetas ya que existe una etiqueta no soportada' do
-
-          	formato_de_fecha = "%H:%M"
-          	hora_actual = Time.now.strftime(formato_de_fecha)
-
-			template = %{<date:r>  <empty(uruguay,argentina)> <sum(4,3)> <time:24>}
-			un_armador = ArmadorDePlantilla.new()
-
-			resultado = un_armador.armar(template)
-			resultado_esperado = "<date:r>  uruguay 7 " + hora_actual.to_s
-			expect(resultado).to include(resultado_esperado)
-        end
+        resultado = un_armador.armar(template)
+        expect(resultado).to include(template_final)
     end
 end
